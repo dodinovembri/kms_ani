@@ -7,7 +7,7 @@ CREATE TABLE users (
     `nip` VARCHAR(50) NULL,
     `name` VARCHAR(100) NULL,
 	`email` VARCHAR(50) NULL,
-    `position_id` INT NULL,
+    `position` VARCHAR(255) NULL,
     `image` VARCHAR(50) NULL,
     `birth_place` VARCHAR(255) NULL,
     `religion` VARCHAR(50) NULL,

@@ -23,34 +23,25 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">Transaction</div>
+            <div class="sidebar-heading">Knowledge</div>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Knowledge</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Knowledge:</h6>
-                        <a class="collapse-item" href="buttons.html">Tacit Knowledge</a>
-                        <a class="collapse-item" href="cards.html">Explicit Knowledge</a>
-                    </div>
-                </div>
+                <a class="nav-link pb-0" href="<?= base_url('tacit_knowledge') ?>">
+                    <i class="fas fa-users"></i>
+                    <span>Tacit Knowledge</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('explicit_knowledge') ?>">
+                    <i class="fas fa-users"></i>
+                    <span>Explicit Knowledge</span></a>
             </li>
 
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">Setup Configuration</div>
             <li class="nav-item">
-                <a class="nav-link pb-0" href="index.html">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-users"></i>
                     <span>Users</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Position</span></a>
             </li>
         
             <!-- Divider -->

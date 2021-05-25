@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class KnowledgeManagementController extends CI_Controller { 
+class TacitKnowledgeController extends CI_Controller { 
 
     function __construct()
     {
@@ -12,7 +12,7 @@ class KnowledgeManagementController extends CI_Controller {
 	public function index()
 	{
         $this->load->view('templates/header');
-        $this->load->view('knowledge_management/index');
+        $this->load->view('tacit_knowledge/index');
         $this->load->view('templates/footer');
 	}
 

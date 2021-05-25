@@ -69,14 +69,23 @@ $route['user/update/(:any)'] = 'UserController/update/$1';
 $route['user/destroy/(:any)'] = 'UserController/destroy/$1';
 
 
-// routes for employee
-$route['knowledge_management'] = 'KnowledgeManagementController';
-$route['knowledge_management/create'] = 'KnowledgeManagementController/create';
-$route['knowledge_management/store'] = 'KnowledgeManagementController/store';
-$route['knowledge_management/edit/(:any)'] = 'KnowledgeManagementController/edit/$1';
-$route['knowledge_management/show/(:any)'] = 'KnowledgeManagementController/show/$1';
-$route['knowledge_management/update/(:any)'] = 'KnowledgeManagementController/update/$1';
-$route['knowledge_management/destroy/(:any)'] = 'KnowledgeManagementController/destroy/$1';
+// routes for tacit knowledge
+$route['tacit_knowledge'] = 'TacitKnowledgeController';
+$route['tacit_knowledge/create'] = 'TacitKnowledgeController/create';
+$route['tacit_knowledge/store'] = 'TacitKnowledgeController/store';
+$route['tacit_knowledge/edit/(:any)'] = 'TacitKnowledgeController/edit/$1';
+$route['tacit_knowledge/show/(:any)'] = 'TacitKnowledgeController/show/$1';
+$route['tacit_knowledge/update/(:any)'] = 'TacitKnowledgeController/update/$1';
+$route['tacit_knowledge/destroy/(:any)'] = 'TacitKnowledgeController/destroy/$1';
+
+// routes for explicit knowledge
+$route['explicit_knowledge'] = 'ExplicitKnowledgeController';
+$route['explicit_knowledge/create'] = 'ExplicitKnowledgeController/create';
+$route['explicit_knowledge/store'] = 'ExplicitKnowledgeController/store';
+$route['explicit_knowledge/edit/(:any)'] = 'ExplicitKnowledgeController/edit/$1';
+$route['explicit_knowledge/show/(:any)'] = 'ExplicitKnowledgeController/show/$1';
+$route['explicit_knowledge/update/(:any)'] = 'ExplicitKnowledgeController/update/$1';
+$route['explicit_knowledge/destroy/(:any)'] = 'ExplicitKnowledgeController/destroy/$1';
 
 // routes for rating
 $route['ratings/(:any)'] = 'RatingController/index/$1';

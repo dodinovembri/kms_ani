@@ -3,7 +3,19 @@
         <?php $this->load->view('components/sidebar') ?>
         <div id="layoutSidenav_content">
             <main>
-                <br>
+                <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+                    <div class="container-xl px-4">
+                        <div class="page-header-content">
+                            <div class="row align-items-center justify-content-between pt-3">
+                                <div class="col-auto mb-3">
+                                    <h1 class="page-header-title">
+                                        <a href="<?php echo base_url('user') ?>">User List</a> &nbsp;- Create User
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
                 <!-- Main page content-->
                 <div class="container-xl px-4">
                     <div class="card mb-4">
@@ -43,7 +55,7 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Birth Place</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" name="image" placeholder="Enter Birth Place">
+                                        <input class="form-control" type="text" name="birth_place" placeholder="Enter Birth Place">
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
@@ -77,12 +89,12 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Role</label>
                                     <div class="col-sm-10">
-                                        <select name="role_id" class="form-control">
+                                        <select name="role_id" class="form-control" required>
                                             <option value="">Select</option>
                                             <option value="0">Administrator</option>
                                             <option value="1">Kasi</option>
-                                            <option value="1">Staff Ahli</option>
-                                            <option value="1">Visitor</option>
+                                            <option value="2">Staff Ahli</option>
+                                            <option value="3">Visitor</option>
                                         </select>
                                     </div>
                                 </div>
@@ -98,20 +110,20 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" name="password" class="form-control" placeholder="Enter password">
+                                        <input type="password" name="password" class="form-control" placeholder="Enter password" required>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Re-Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" name="password_confirm" class="form-control" placeholder="Enter password confirm">
+                                        <input type="password" name="password_confirm" class="form-control" placeholder="Enter password confirm" required>
                                     </div>
                                 </div><br>
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-primary" type="button">Submit</button>
-                                        <a href="<?php echo base_url('user/create') ?>"><button class="btn btn-danger" type="button">Cancel</button></a><br><br>
+                                        <a href="<?php echo base_url('user') ?>"><button class="btn btn-danger" type="button">Cancel</button></a><br><br>
                                     </div>
                                 </div>
                                 <br>

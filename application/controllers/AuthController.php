@@ -43,13 +43,5 @@ class AuthController extends CI_Controller {
             $this->session->set_flashdata('warning', "Email or Password is wrong!");
             return redirect(base_url('login'));
         }
-    }
-
-    public function logout()
-    {
-        $this->session->sess_destroy();
-        $this->session->set_flashdata('success', 'User Logout successfully');
-
-        return redirect(base_url('login'));
     }  
 }

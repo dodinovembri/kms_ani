@@ -1,4 +1,4 @@
-    <?php $this->load->view('components/topbar') ?>
+<?php $this->load->view('components/topbar') ?>
     <div id="layoutSidenav">
         <?php $this->load->view('components/sidebar') ?>
         <div id="layoutSidenav_content">
@@ -7,9 +7,9 @@
                 <!-- Main page content-->
                 <div class="container-xl px-4">
                     <div class="card mb-4">
-                        <div class="card-header">Users List</div>
+                        <div class="card-header">Tacit Knowledge List</div>
                         <div class="card-body">
-                            <a href="<?php echo base_url('user/create') ?>"><button class="btn btn-primary" type="button">Create New</button></a><br><br>
+                            <a href="<?php echo base_url('tacit_knowledge/create') ?>"><button class="btn btn-primary" type="button">Create New</button></a><br><br>
                             <?php if ($this->session->flashdata('success')) { ?>
                                 <div class="alert alert-primary" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
                                 <?php $this->session->unset_userdata('success'); ?>
@@ -21,23 +21,25 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>NIP</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
-                                        <th>Role</th>
+                                        <th>Category</th>
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>Status</th>
+                                        <th>Creator</th>
+                                        <th>Created At</th>
                                         <th style="width:50%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 0;
-                                    foreach ($users as $key => $value) {
+                                    foreach ($tacit_knowledges as $key => $value) {
                                         $no++; ?>
                                         <tr>
                                             <td><?= $no ?></td>
                                             <td><?= $value->nip ?></td>
                                             <td><?= $value->name ?></td>
                                             <td><?= $value->email ?></td>
+                                            <td><?= $value->position ?></td>
                                             <td><?= $value->position ?></td>
                                             <td><?= check_role($value->role_id); ?></td>
                                             <td>

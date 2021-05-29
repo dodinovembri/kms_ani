@@ -57,7 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'AuthController';
 $route['auth/login'] = 'AuthController/login';
 $route['home'] = 'HomeController';
-$route['logout'] = 'AuthController/logout';
+$route['logout'] = 'HomeController/logout';
 
 // routes for user
 $route['user'] = 'UserController';
@@ -67,3 +67,12 @@ $route['user/edit/(:any)'] = 'UserController/edit/$1';
 $route['user/show/(:any)'] = 'UserController/show/$1';
 $route['user/update/(:any)'] = 'UserController/update/$1';
 $route['user/destroy/(:any)'] = 'UserController/destroy/$1';
+
+// routes for tacit knowledge
+$route['tacit_knowledge'] = 'TacitKnowledgeController';
+$route['tacit_knowledge/create'] = 'TacitKnowledgeController/create';
+$route['tacit_knowledge/store'] = 'TacitKnowledgeController/store';
+$route['tacit_knowledge/edit/(:any)'] = 'TacitKnowledgeController/edit/$1';
+$route['tacit_knowledge/show/(:any)'] = 'TacitKnowledgeController/show/$1';
+$route['tacit_knowledge/update/(:any)'] = 'TacitKnowledgeController/update/$1';
+$route['tacit_knowledge/destroy/(:any)'] = 'TacitKnowledgeController/destroy/$1';

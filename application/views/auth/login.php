@@ -22,8 +22,10 @@
                                         </div>
                                         <?php if ($this->session->flashdata('success')) { ?>
                                             <div class="alert alert-primary" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
+                                            <?php $this->session->unset_userdata('success'); ?>
                                         <?php } elseif ($this->session->flashdata('warning')) { ?>
                                             <div class="alert alert-warning" role="alert"><?php echo $this->session->flashdata('warning'); ?></div>
+                                            <?php $this->session->unset_userdata('warning'); ?>
                                         <?php } ?>
                                         <form method="POST" action="<?php echo base_url('auth/login') ?>">
                                             <!-- Form Group (email address)-->

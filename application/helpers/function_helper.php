@@ -13,4 +13,26 @@
             }
         }
     }
+
+    if (!function_exists('check_sex')) {
+        function check_sex($sex)
+        {
+            if ($sex == 0) {
+                return "Female";
+            }elseif ($sex == 1) {
+                return "Male";
+            }
+        }
+    }   
+    
+    if (!function_exists('check_status')) {
+        function check_status($status)
+        {
+            if ($status == 0) {
+                return "Inactive";
+            }elseif ($status == 1) {
+                return "Active";
+            }
+        }
+    }       
 ?>

@@ -16,33 +16,11 @@ class HomeController extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 
-    public function create()
+    public function logout()
     {
-        // 
-    }
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('success', 'User Logout successfully');
 
-    public function store()
-    {
-        // 
+        return redirect(base_url('login'));
     }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        // 
-    }
-
-    public function update($id)
-    {
-        // 
-    }
-
-    public function destroy($id)
-    {
-        // 
-    }  
 }

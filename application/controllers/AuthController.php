@@ -25,8 +25,7 @@ class AuthController extends CI_Controller {
         $password = md5($this->input->post('password'));
 
         $check_auth = $this->UserModel->check_auth($email, $password)->row();
-        var_dump($check_auth);
-        if ($check_auth) {
+        if (!empty($check_auth)) {
             $role_name = check_role($check_auth->role_id);
             $auth = array(
                     'id'        => $check_auth->id,

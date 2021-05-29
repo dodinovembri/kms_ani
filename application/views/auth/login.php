@@ -1,51 +1,73 @@
-<div class="container">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container-xl px-4">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <!-- Basic login form-->
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-body">
+                                        <!-- Login form-->
+                                        <div class="text-center">
+                                            <img src="<?= base_url('assets/img/logosumsel.png') ?>" alt="logo" width="50" height="60">
+                                            <img src="<?= base_url('assets/img/kemendikbud.png') ?>" alt="logo" width="60" height="60">
+                                        </div>
+                                        </br>
+                                        <div class="text-center">
+                                            <h6 class="text-gray-900 mb-4">KNOWLEDGE MANAGEMENT SYSTEM </br>
+                                                SEKSI PTK SMK </br>
+                                                DINAS PENDIDIKAN PROVINSI SUMATERA SELATAN
+                                            </h6>
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-        <div class="col-lg-5">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <img src="<?= base_url('assets/img/logosumsel.png') ?>" alt="logo" width="50" height="60">
-                                    <img src="<?= base_url('assets/img/kemendikbud.png') ?>" alt="logo" width="60" height="60">
+                                        </div>
+                                        <?php if ($this->session->flashdata('success')) { ?>
+                                            <div class="alert alert-primary" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
+                                        <?php } elseif ($this->session->flashdata('warning')) { ?>
+                                            <div class="alert alert-warning" role="alert"><?php echo $this->session->flashdata('warning'); ?></div>
+                                        <?php } ?>
+                                        <form method="POST" action="<?php echo base_url('auth/login') ?>">
+                                            <!-- Form Group (email address)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter email address" required />
+                                            </div>
+                                            <!-- Form Group (password)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputPassword">Password</label>
+                                                <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Enter password" required />
+                                            </div>
+                                            <!-- Form Group (remember password checkbox)-->
+                                            <div class="mb-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" id="rememberPasswordCheck" type="checkbox" value="" />
+                                                    <label class="form-check-label" for="rememberPasswordCheck">Remember password</label>
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (login box)-->
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="small" href="#">Forgot Password?</a>
+                                                <button type="submit" class="btn btn-primary">Login</button>
+                                            </div>
+                                        </form>
+                                    </div>                                    
                                 </div>
-                                </br>
-                                <div class="text-center">
-                                    <h6 class="text-gray-900 mb-4">KNOWLEDGE MANAGEMENT SYSTEM </br>
-                                        SEKSI PTK SMK </br>
-                                        DINAS PENDIDIKAN PROVINSI SUMATERA SELATAN
-                                    </h6>
-
-                                </div>
-
-                                <form class="user" method="post" action="<?= base_url('auth/login'); ?>">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="email" placeholder="Enter Email Address..." value="<?= set_value('email');  ?>">
-                                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
-                                        <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
-                                </form>
-
                             </div>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
-
+            <div id="layoutAuthentication_footer">
+                <footer class="footer-admin mt-auto footer-dark">
+                    <div class="container-xl px-4">
+                        <div class="row">
+                            <div class="col-md-6 small">Copyright © Your Website 2021</div>
+                            <div class="col-md-6 text-md-end small">
+                                <a href="#!">Privacy Policy</a>
+                                ·
+                                <a href="#!">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
-
-    </div>
-
-</div>

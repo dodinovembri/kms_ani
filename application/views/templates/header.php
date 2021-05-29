@@ -1,30 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css') ?>" rel="stylesheet">
-
-</head>
-
-<?php if ($this->session->userdata('logged_in') == 1) { ?>
-    <body id="page-top">
-<?php } else { ?>
-    <body class="bg-gradient-primary">
-<?php } ?>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>KMS PTK SMK</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <script data-search-pseudo-elements="" defer="" src="<?php echo base_url('assets/ajax/libs/font-awesome/5.15.3/js/all.min.js') ?>" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url('assets/ajax/libs/feather-icons/4.28.0/feather.min.js') ?>" crossorigin="anonymous"></script>
+    </head>
+    <body class="nav-fixed">

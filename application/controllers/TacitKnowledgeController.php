@@ -15,7 +15,7 @@ class TacitKnowledgeController extends CI_Controller {
 
 	public function index()
 	{
-        $data['tacit_knowledges'] = $this->TacitKnowledgeModel->get()->result();
+        $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getNotWhere(2)->result();
 
         $this->load->view('templates/header');
 		$this->load->view('tacit_knowledge/index', $data);
@@ -31,70 +31,30 @@ class TacitKnowledgeController extends CI_Controller {
 
     public function store()
     {
-        $tacit_knowledge_code = $this->input->post('tacit_knowledge_code');
-        $tacit_knowledge_name = $this->input->post('tacit_knowledge_name');
-        $address = $this->input->post('address');
-        $latitude = $this->input->post('latitude');
-        $longitude = $this->input->post('longitude');
-        $email = $this->input->post('email');
-        $voice_number = $this->input->post('voice_number');
-        $description = $this->input->post('description');
+        $category = $this->input->post('category');
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
         $status = $this->input->post('status');
+        $creator_id = $this->session->userdata('id');
+        $created_at = date("Y-m-d H-i-s");
 
-        // for image
-        $image = uniqid();
-        $config['upload_path']          = './uploads/tacit_knowledge/';
-        $config['allowed_types']        = 'gif|jpg|png';            
-        $config['file_name']            = $image;
+        $data = array(
+            'category' => $category,
+            'title' => $title,
+            'content' => $content,
+            'status' => $status,
+            'creator_id' => $creator_id,
+            'created_at' => $created_at
+        );
 
-        $this->load->library('upload', $config); 
-
-        if ($this->upload->do_upload('image'))
-        {
-            $data = array(
-                'tacit_knowledge_code' => $tacit_knowledge_code,
-                'tacit_knowledge_name' => $tacit_knowledge_name,
-                'address' => $address,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-                'email' => $email,
-                'voice_number' => $voice_number,
-                'description' => $description,
-                'image' => $this->upload->data('file_name'),
-                'status' => $status
-            );
-
-            $insert = $this->TacitKnowledgeModel->insert($data);
-            $this->session->set_flashdata('success', "Success create tacit_knowledge!");
-            return redirect(base_url('tacit_knowledge'));
-        }
-        else
-        {                          
-            $data = array(
-                'tacit_knowledge_code' => $tacit_knowledge_code,
-                'tacit_knowledge_name' => $tacit_knowledge_name,
-                'address' => $address,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-                'email' => $email,
-                'voice_number' => $voice_number,
-                'description' => $description,
-                'status' => $status
-            );
-
-            $insert = $this->TacitKnowledgeModel->insert($data);
-            $this->session->set_flashdata('success', "Success create tacit_knowledge!");
-            return redirect(base_url('tacit_knowledge'));
-        }
+        $this->TacitKnowledgeModel->insert($data);
+        $this->session->set_flashdata('success', "Success create tacit_knowledge!");
+        return redirect(base_url('tacit_knowledge'));
     }
 
     public function show($id)
     {
-        $data['tacit_knowledge'] = $this->TacitKnowledgeModel->get_data($id)->row();
-        $data['tacit_knowledge_facility'] = $this->tacit_knowledgeFacilityModel->get_tacit_knowledge_facility($id)->result();
-        $data['tacit_knowledge_extracurricular'] = $this->tacit_knowledgeExtracurricularModel->get_data_by_alt($id)->result();
-        $data['tacit_knowledge_location'] = $this->tacit_knowledgeLocationModel->get_data_by_alt($id)->result();
-        $data['tacit_knowledge_accessibility'] = $this->tacit_knowledgeAccessibilityModel->get_data_by_alt($id)->result();
+        $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($id)->row();
 
         $this->load->view('templates/header');
         $this->load->view('tacit_knowledge/show', $data);
@@ -112,61 +72,25 @@ class TacitKnowledgeController extends CI_Controller {
 
     public function update($id)
     {
-        $tacit_knowledge_code = $this->input->post('tacit_knowledge_code');
-        $tacit_knowledge_name = $this->input->post('tacit_knowledge_name');
-        $address = $this->input->post('address');
-        $latitude = $this->input->post('latitude');
-        $longitude = $this->input->post('longitude');
-        $email = $this->input->post('email');
-        $voice_number = $this->input->post('voice_number');
-        $description = $this->input->post('description');
+        $category = $this->input->post('category');
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
         $status = $this->input->post('status');
+        $updater_id = $this->session->userdata('id');
+        $updated_at = date("Y-m-d H-i-s");
 
-        // for image
-        $image = uniqid();
-        $config['upload_path']          = './uploads/tacit_knowledge/';
-        $config['allowed_types']        = 'gif|jpg|png';            
-        $config['file_name']            = $image;
+        $data = array(
+            'category' => $category,
+            'title' => $title,
+            'content' => $content,
+            'status' => $status,
+            'updater_id' => $updater_id,
+            'updated_at' => $updated_at
+        );
 
-        $this->load->library('upload', $config); 
-
-        if ($this->upload->do_upload('image'))
-        {
-            $data = array(
-                'tacit_knowledge_code' => $tacit_knowledge_code,
-                'tacit_knowledge_name' => $tacit_knowledge_name,
-                'address' => $address,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-                'email' => $email,
-                'voice_number' => $voice_number,
-                'description' => $description,
-                'image' => $this->upload->data('file_name'),
-                'status' => $status
-            );
-
-            $update = $this->TacitKnowledgeModel->update($data, $id);
-            $this->session->set_flashdata('success', "Success update tacit_knowledge!");
-            return redirect(base_url('tacit_knowledge'));
-        }
-        else
-        {                          
-            $data = array(
-                'tacit_knowledge_code' => $tacit_knowledge_code,
-                'tacit_knowledge_name' => $tacit_knowledge_name,
-                'address' => $address,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-                'email' => $email,
-                'voice_number' => $voice_number,
-                'description' => $description,
-                'status' => $status
-            );
-
-            $update = $this->TacitKnowledgeModel->update($data, $id);
-            $this->session->set_flashdata('success', "Success update tacit_knowledge!");
-            return redirect(base_url('tacit_knowledge'));
-        }
+        $this->TacitKnowledgeModel->update($data, $id);
+        $this->session->set_flashdata('success', "Success update Tacit Knowledge!");
+        return redirect(base_url('tacit_knowledge'));        
     }
 
     public function destroy($id)

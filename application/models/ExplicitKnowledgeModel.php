@@ -1,8 +1,8 @@
 <?php
 
-class TacitKnowledgeModel extends CI_Model
+class ExplicitKnowledgeModel extends CI_Model
 {
-    private $_table = "tacit_knowledge";
+    private $_table = "explicit_knowledge";
 
     public function get()
     {
@@ -30,7 +30,7 @@ class TacitKnowledgeModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete($this->_table);
-    } 
+    }    
     
     public function getNotWhere($status)
     {
@@ -42,5 +42,5 @@ class TacitKnowledgeModel extends CI_Model
     {
         $this->db->where('status', $status);
         return $this->db->get($this->_table);
-    }    
+    }      
 }

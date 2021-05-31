@@ -1,12 +1,15 @@
-# Tacit Knowledge
-Tacit Knowledge table.
+# Explicit Knowledge
+Explicit Knowledge table.
 
 ```sql
-CREATE TABLE tacit_knowledge (
+CREATE TABLE explicit_knowledge (
 	`id` INT NOT NULL AUTO_INCREMENT,
     `category` VARCHAR(255) NULL,
     `title` VARCHAR(255) NULL,
 	`content` TEXT NULL,
+    `file` VARCHAR (50) NULL,
+    `original_file_name` TEXT NULL,
+    `description` TEXT NULL,
     `status` TINYINT NULL,
     `validate_code` INT NULL,
     `creator_id` INT NULL,
@@ -21,7 +24,5 @@ CREATE TABLE tacit_knowledge (
 | Code | Name |
 | ---- | ---- |
 | 0 | Not Validated |
-| 1 | Accepted/ Validated by Admin |
-| 2 | Rejected by Admin |
-| 3 | Accepted/ Validated by Kasi |
-| 4 | Rejected by Kasi |
+| 1 | Validated |
+| 2 | Rejected |

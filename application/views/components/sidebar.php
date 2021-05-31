@@ -4,16 +4,20 @@
                         <?php if ($this->session->userdata('role_id') == 0) { ?>
                             <div class="nav accordion" id="accordionSidenav">                           
                                 <div class="sidenav-menu-heading">Core</div>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('home') ?>">
                                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                                     Dashboard
                                 </a>
                                 <div class="sidenav-menu-heading">Knowledge Management</div>
+                                <a class="nav-link" href="<?php echo base_url('knowledge_validate') ?>">
+                                    <div class="nav-link-icon"><i data-feather="check-circle"></i></div>
+                                    Validation Knowledge
+                                </a>                                
                                 <a class="nav-link" href="<?php echo base_url('tacit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="repeat"></i></div>
                                     Tacit Knowledge
                                 </a>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('explicit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
                                 </a>
@@ -21,16 +25,20 @@
                         <?php }elseif ($this->session->userdata('role_id') == 1) { ?>
                             <div class="nav accordion" id="accordionSidenav">                           
                                 <div class="sidenav-menu-heading">Core</div>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('home') ?>">
                                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                                     Dashboard
                                 </a>
                                 <div class="sidenav-menu-heading">Knowledge Management</div>
+                                <a class="nav-link" href="<?php echo base_url('knowledge_validate') ?>">
+                                    <div class="nav-link-icon"><i data-feather="check-circle"></i></div>
+                                    Validation Knowledge
+                                </a> 
                                 <a class="nav-link" href="<?php echo base_url('tacit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="repeat"></i></div>
                                     Tacit Knowledge
                                 </a>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('explicit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
                                 </a>
@@ -45,16 +53,20 @@
                         <?php }elseif ($this->session->userdata('role_id') == 2) { ?>
                             <div class="nav accordion" id="accordionSidenav">                           
                                 <div class="sidenav-menu-heading">Core</div>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('home') ?>">
                                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                                     Dashboard
                                 </a>
                                 <div class="sidenav-menu-heading">Knowledge Management</div>
+                                <a class="nav-link" href="<?php echo base_url('knowledge_validate') ?>">
+                                    <div class="nav-link-icon"><i data-feather="check-circle"></i></div>
+                                    Validation Knowledge
+                                </a> 
                                 <a class="nav-link" href="<?php echo base_url('tacit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="repeat"></i></div>
                                     Tacit Knowledge
                                 </a>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('explicit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
                                 </a>
@@ -69,16 +81,20 @@
                         <?php }elseif ($this->session->userdata('role_id') == 3) { ?>
                             <div class="nav accordion" id="accordionSidenav">                           
                                 <div class="sidenav-menu-heading">Core</div>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('home') ?>">
                                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                                     Dashboard
                                 </a>
                                 <div class="sidenav-menu-heading">Knowledge Management</div>
+                                <a class="nav-link" href="<?php echo base_url('knowledge_validate') ?>">
+                                    <div class="nav-link-icon"><i data-feather="check-circle"></i></div>
+                                    Validation Knowledge
+                                </a> 
                                 <a class="nav-link" href="<?php echo base_url('tacit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="repeat"></i></div>
                                     Tacit Knowledge
                                 </a>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="<?php echo base_url('explicit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
                                 </a>

@@ -76,3 +76,23 @@ $route['tacit_knowledge/edit/(:any)'] = 'TacitKnowledgeController/edit/$1';
 $route['tacit_knowledge/show/(:any)'] = 'TacitKnowledgeController/show/$1';
 $route['tacit_knowledge/update/(:any)'] = 'TacitKnowledgeController/update/$1';
 $route['tacit_knowledge/destroy/(:any)'] = 'TacitKnowledgeController/destroy/$1';
+
+// routes for tacit knowledge
+$route['explicit_knowledge'] = 'ExplicitKnowledgeController';
+$route['explicit_knowledge/create'] = 'ExplicitKnowledgeController/create';
+$route['explicit_knowledge/store'] = 'ExplicitKnowledgeController/store';
+$route['explicit_knowledge/edit/(:any)'] = 'ExplicitKnowledgeController/edit/$1';
+$route['explicit_knowledge/show/(:any)'] = 'ExplicitKnowledgeController/show/$1';
+$route['explicit_knowledge/update/(:any)'] = 'ExplicitKnowledgeController/update/$1';
+$route['explicit_knowledge/destroy/(:any)'] = 'ExplicitKnowledgeController/destroy/$1';
+
+// routes for tacit knowledge validate
+$route['knowledge_validate'] = 'KnowledgeValidateController';
+$route['knowledge_validate/create'] = 'KnowledgeValidateController/create';
+$route['knowledge_validate/store'] = 'KnowledgeValidateController/store';
+$route['knowledge_validate/edit/(:any)'] = 'KnowledgeValidateController/edit/$1';
+$route['knowledge_validate/show/(:any)'] = 'KnowledgeValidateController/show/$1';
+$route['knowledge_validate/update/(:any)'] = 'KnowledgeValidateController/update/$1';
+$route['knowledge_validate/destroy/(:any)'] = 'KnowledgeValidateController/destroy/$1';
+$route['knowledge_validate/accept_by_admin/(:any)'] = 'KnowledgeValidateController/accept_by_admin/$1';
+$route['knowledge_validate/reject_by_admin/(:any)'] = 'KnowledgeValidateController/reject_by_admin/$1';

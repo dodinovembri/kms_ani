@@ -9,7 +9,7 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <a href="<?php echo base_url('tacit_knowledge') ?>">Tacit Knowledge</a> &nbsp;- Create Tacit Knowledge
+                                        <a href="<?php echo base_url('explicit_knowledge') ?>">Explicit Knowledge</a> &nbsp;- Create Explicit Knowledge
                                     </h1>
                                 </div>
                             </div>
@@ -19,9 +19,9 @@
                 <!-- Main page content-->
                 <div class="container-xl px-4">
                     <div class="card mb-4">
-                        <div class="card-header">Create Tacit Knowledge</div>
+                        <div class="card-header">Create Explicit Knowledge</div>
                         <div class="card-body">
-                            <form method="POST" action="<?php echo base_url('tacit_knowledge/store') ?>" enctype="multipart/form-data">
+                            <form method="POST" action="<?php echo base_url('explicit_knowledge/store') ?>" enctype="multipart/form-data">
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
@@ -35,9 +35,15 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
-                                    <label class="col-sm-2 col-form-label">Content</label>
+                                    <label class="col-sm-2 col-form-label">File</label>
                                     <div class="col-sm-10">
-                                        <textarea name="content" rows="7" class="form-control" required></textarea>
+                                        <input class="form-control" type="file" name="file" placeholder="Enter Title" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-group row">
+                                    <label class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="description" rows="7" class="form-control" required></textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
@@ -54,7 +60,7 @@
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-primary" type="button">Submit</button>
-                                        <a href="<?php echo base_url('tacit_knowledge') ?>"><button class="btn btn-danger" type="button">Cancel</button></a><br><br>
+                                        <a href="<?php echo base_url('explicit_knowledge') ?>"><button class="btn btn-danger" type="button">Cancel</button></a><br><br>
                                     </div>
                                 </div>
                                 <br>

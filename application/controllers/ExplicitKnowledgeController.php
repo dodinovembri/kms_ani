@@ -6,7 +6,7 @@ class ExplicitKnowledgeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['ExplicitKnowledgeModel']);
+        $this->load->model(['ExplicitKnowledgeModel', 'KnowledgeCategoryModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -24,17 +24,18 @@ class ExplicitKnowledgeController extends CI_Controller {
     
     public function create()
     {
+        $data['knowledge_categories'] = $this->KnowledgeCategoryModel->get()->result();
+
         $this->load->view('templates/header');
-        $this->load->view('explicit_knowledge/create');
+        $this->load->view('explicit_knowledge/create', $data);
         $this->load->view('templates/footer');
     }
 
     public function store()
     {
-        $category = $this->input->post('category');
+        $knowledge_category_id = $this->input->post('knowledge_category_id');
         $title = $this->input->post('title');
         $description = $this->input->post('description');
-        $status = $this->input->post('status');
         $creator_id = $this->session->userdata('id');
         $created_at = date("Y-m-d H-i-s");
 
@@ -49,10 +50,10 @@ class ExplicitKnowledgeController extends CI_Controller {
         if ($this->upload->do_upload('file'))
         {
             $data = array(
-                'category' => $category,
+                'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
                 'description' => $description,
-                'status' => $status,
+                'status' => 1,
                 'file' => $this->upload->data('file_name'),
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
@@ -61,10 +62,10 @@ class ExplicitKnowledgeController extends CI_Controller {
         else
         {                          
             $data = array(
-                'category' => $category,
+                'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
                 'description' => $description,
-                'status' => $status,
+                'status' => 1,
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
             );
@@ -84,9 +85,24 @@ class ExplicitKnowledgeController extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function show_from_notif($id)
+    {
+        $data = array(
+            'is_read' => 1
+        );
+        $this->NotificationModel->update($data, $id);
+        
+        $data['explicit_knowledge'] = $this->ExplicitKnowledgeModel->getById($id)->row();;
+
+        $this->load->view('templates/header');
+        $this->load->view('explicit_knowledge/show', $data);
+        $this->load->view('templates/footer');
+    }    
+
     public function edit($id)
     {
         $data['explicit_knowledge'] = $this->ExplicitKnowledgeModel->getById($id)->row();
+        $data['knowledge_categories'] = $this->KnowledgeCategoryModel->get()->result();
 
         $this->load->view('templates/header');
         $this->load->view('explicit_knowledge/edit', $data);
@@ -95,10 +111,9 @@ class ExplicitKnowledgeController extends CI_Controller {
 
     public function update($id)
     {
-        $category = $this->input->post('category');
+        $knowledge_category_id = $this->input->post('knowledge_category_id');
         $title = $this->input->post('title');
         $description = $this->input->post('description');
-        $status = $this->input->post('status');
         $creator_id = $this->session->userdata('id');
         $created_at = date("Y-m-d H-i-s");
 
@@ -113,10 +128,9 @@ class ExplicitKnowledgeController extends CI_Controller {
         if ($this->upload->do_upload('file'))
         {
             $data = array(
-                'category' => $category,
+                'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
                 'description' => $description,
-                'status' => $status,
                 'file' => $this->upload->data('file_name'),
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
@@ -125,10 +139,9 @@ class ExplicitKnowledgeController extends CI_Controller {
         else
         {                          
             $data = array(
-                'category' => $category,
+                'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
                 'description' => $description,
-                'status' => $status,
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
             );

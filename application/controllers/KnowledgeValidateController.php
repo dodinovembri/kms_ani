@@ -6,7 +6,7 @@ class KnowledgeValidateController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['TacitKnowledgeModel', 'ExplicitKnowledgeModel']);
+        $this->load->model(['TacitKnowledgeModel', 'ExplicitKnowledgeModel', 'HelperModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -15,8 +15,7 @@ class KnowledgeValidateController extends CI_Controller {
 
 	public function index()
 	{
-        $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getWhere(0)->result();
-        $data['explicit_knowledges'] = $this->ExplicitKnowledgeModel->getWhere(0)->result();
+        $data['knowledges'] = $this->HelperModel->getWithUnion()->result();
 
         $this->load->view('templates/header');
 		$this->load->view('knowledge_validate/index', $data);
@@ -25,12 +24,30 @@ class KnowledgeValidateController extends CI_Controller {
 
     public function show($id)
     {
-        $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($id)->row();
+        $data['knowledge'] = $this->TacitKnowledgeModel->getById($id)->row();
 
         $this->load->view('templates/header');
         $this->load->view('knowledge_validate/show', $data);
         $this->load->view('templates/footer');
-    }    
+    } 
+    
+    public function show_tacit($id)
+    {
+        $data['knowledge'] = $this->TacitKnowledgeModel->getById($id)->row();
+
+        $this->load->view('templates/header');
+        $this->load->view('knowledge_validate/show', $data);
+        $this->load->view('templates/footer');
+    } 
+    
+    public function show_explicit($id)
+    {
+        $data['knowledge'] = $this->ExplicitKnowledgeModel->getById($id)->row();
+
+        $this->load->view('templates/header');
+        $this->load->view('knowledge_validate/show', $data);
+        $this->load->view('templates/footer');
+    }     
 
     public function accept_by_admin($id)
     {

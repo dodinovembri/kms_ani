@@ -36,7 +36,7 @@
                                         $no++; ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $value->category ?></td>
+                                            <td><?= $value->knowledge_category_id ?></td>
                                             <td><?= $value->title ?></td>
                                             <td><a target="_blank" href="<?php echo base_url('uploads/explicit_knowledge/'); echo $value->file; ?>"><?= $value->file ?></a></td>
                                             <td><?= check_status($value->status) ?></td>

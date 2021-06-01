@@ -1,0 +1,27 @@
+- visible to visitor
+- all knowledge list
+- update profile
+- tacit explicit crud at category
+- recent member activity/ Dokumentasi log aktivitas
+- Notifikasi aktivitas kalau ada postingan baru after approve
+- Grup diskusi, chat antar anggota
+- Searching\
+
+
+
+Kasi - bisa liat semuanya, tapi punya wewenang bisa milih user mana yang jadi admin/staf ahli/visitor
+Admin - sama kayak kasi kak bedanya gabisa milih siapa yg jadi admin/staf ahli/visitor
+Staf ahli - menu validation knowledge dan role gaada di staf ahli, untuk menu member hanya bisa lihat list user dan ngechat user tapi gabisa tambah anggota
+Visitor - menu admin gaada divisitor. Tugas visitor hanya bisa download, melihat dan membaca article dan document yg di upload oleh kasi, admin dan staf ahli kak
+
+Oh iya kak dibagian validation knowledge itu kan tombol yes nya belum fungsi kak..
+Kemarin dari bu ken bilang kalau bisa itu beda kasi dan admin 
+Kalo admin hanya bisa melihat knowledge yg di post atau diupload yg ngasal oleh user misal user nge post artikel "ajzbxndkskdjsk" nah itu admin yg bisa milih untuk dihapus dan tidak diposting. Sedangkan kasi itu yang memiliki wewenang tinggi yang dapat melihat knowledge yang memang benar benar layak gitu utk diposting kak?
+
+Kak tadi ani lihat setiap user bisa lihat validation knowledge kak..nah utk validation knowledge itu cuma kasi aja kak
+
+oh iya kak, bisa tidak utk yg di upload itu diatur ada yg visitor bisa lihat ada juga yg gakbisa dilihat kak
+
+visitor itu entitas yg cuma bisa lihat,download,komentar yang di upload oleh staf ahli kak. terus visitor juga bisa bertanya di menu help nya
+Kan ada beberapa knowledge yg hanya diketahui oleh orang dinas, ada juga knowledge yg bisa diketahui banyak orang gitu kak
+Seperti di dinas ini knowledge format PAK itu hanya orang dinas yg boleh tau, guru dan kepala sekolah gak boleh tau. Lalu utk format SKP itu guru dan kepala sekolah wajib tau agar pas ke dinas mengurus SKP tidak salah lagi kak

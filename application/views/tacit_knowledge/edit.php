@@ -25,7 +25,12 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" name="category" value="<?php echo $tacit_knowledge->category; ?>" placeholder="Enter Category" required>
+                                        <select name="knowledge_category_id" class="form-control" required>
+                                            <option value="<?php echo $tacit_knowledge->knowledge_category_id; ?>"><?php echo $tacit_knowledge->knowledge_category_id; ?></option>
+                                            <?php  foreach ($knowledge_categories as $key => $value) { ?>
+                                                <option value="<?php echo $value->id; ?>"><?php echo $value->category_title; ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
@@ -37,19 +42,19 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Content</label>
                                     <div class="col-sm-10">
-                                        <textarea name="content" rows="7" class="form-control" required><?php echo $tacit_knowledge->category; ?></textarea>
+                                        <textarea name="content" rows="7" class="form-control" required><?php echo $tacit_knowledge->content; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
-                                    <label class="col-sm-2 col-form-label">Status</label>
+                                    <label class="col-sm-2 col-form-label">Visible to visitor</label>
                                     <div class="col-sm-10">
-                                        <select name="status" class="form-control" required>
-                                            <?php if ($user->status == 0) { ?>
-                                                <option value="0">Inactive</option>
-                                                <option value="1">Active</option>
-                                            <?php }elseif ($user->status == 1) { ?>
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
+                                        <select name="is_visible_by_visitor" class="form-control" required>
+                                            <?php if ($user->is_visible_by_visitor == 0) { ?>
+                                                <option value="0">No</option>
+                                                <option value="1">Yes</option>
+                                            <?php }elseif ($user->is_visible_by_visitor == 1) { ?>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
                                             <?php } ?>
                                         </select>
                                     </div>

@@ -23,22 +23,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Knowledge base rating-->
-                <?php if ($tacit_knowledge->status == 0) { ?>
-                    <div class="text-center mt-5">
-                        <h4 class="mb-3">This knowledge is helpful?</h4>
-                        <div class="mb-3">
-                            <a href="<?php echo base_url('tacit_knowledge/accept_by_admin/'); echo $tacit_knowledge->id; ?>"><button class="btn btn-primary mx-2 px-3" role="button">
-                                <i class="me-2" data-feather="thumbs-up"></i>
-                                Yes
-                            </button></a>
-                            <a href="<?php echo base_url('tacit_knowledge/reject_by_admin/'); echo $tacit_knowledge->id; ?>"><button class="btn btn-danger mx-2 px-3" role="button">
-                                <i class="me-2" data-feather="thumbs-down"></i>
-                                No
-                            </button></a>
-                        </div>
-                    </div>
-                <?php } ?>
             </div>
         </main>
         <?php $this->load->view('components/footer') ?>

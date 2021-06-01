@@ -1,8 +1,8 @@
 <?php
 
-class UserModel extends CI_Model
+class KnowledgeCategoryModel extends CI_Model
 {
-    private $_table = "users";
+    private $_table = "knowledge_category";
 
     public function get()
     {
@@ -20,6 +20,11 @@ class UserModel extends CI_Model
         return $this->db->get($this->_table);
     }      
 
+    public function getByWhere($category_id)
+    {
+        return $this->db->query("SELECT id, knowledge_category_id, title, content, is_tacit, created_at FROM tacit_knowledge WHERE status != 0 UNION SELECT id, knowledge_category_id, title, content, is_tacit, created_at FROM explicit_knowledge WHERE status != 0");
+    }
+
     public function update($data, $id)
     {
         $this->db->where('id', $id);
@@ -30,17 +35,17 @@ class UserModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete($this->_table);
-    } 
-    public function check_auth($email, $password)
-    {
-        $this->db->where('email', $email);
-        $this->db->where('password', $password);
-        return $this->db->get($this->_table);
     }    
     
-    public function getWithoutMe($user_id)
+    public function getNotWhere($status)
     {
-        $this->db->where('id !=', $user_id);        
+        $this->db->where('status !=', $status);
         return $this->db->get($this->_table);
     }
+
+    public function getWhere($status)
+    {
+        $this->db->where('status', $status);
+        return $this->db->get($this->_table);
+    }      
 }

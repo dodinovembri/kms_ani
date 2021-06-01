@@ -25,7 +25,12 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" name="category" placeholder="Enter Category" required>
+                                        <select name="knowledge_category_id" class="form-control" required>
+                                            <option value="">Select</option>
+                                            <?php  foreach ($knowledge_categories as $key => $value) { ?>
+                                                <option value="<?php echo $value->id; ?>"><?php echo $value->category_title; ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
@@ -41,14 +46,14 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
-                                    <label class="col-sm-2 col-form-label">Status</label>
+                                    <label class="col-sm-2 col-form-label">Visible to visitor</label>
                                     <div class="col-sm-10">
-                                        <select name="status" class="form-control" required>
-                                            <option value="1">Active</option>
-                                            <option value="0">Inactive</option>
+                                        <select name="is_visible_by_visitor" class="form-control" required>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>                                
                                 <br>
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label"></label>

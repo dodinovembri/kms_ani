@@ -25,7 +25,12 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" name="category" value="<?php echo $explicit_knowledge->category; ?>" placeholder="Enter Category" required>
+                                        <select name="knowledge_category_id" class="form-control" required>
+                                            <option value="<?php echo $explicit_knowledge->knowledge_category_id; ?>"><?php echo $explicit_knowledge->knowledge_category_id; ?></option>
+                                            <?php  foreach ($knowledge_categories as $key => $value) { ?>
+                                                <option value="<?php echo $value->id; ?>"><?php echo $value->category_title; ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">
@@ -44,20 +49,6 @@
                                     <label class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
                                         <textarea name="description" rows="7" class="form-control" required><?php echo $explicit_knowledge->description ?></textarea>
-                                    </div>
-                                </div>
-                                <div class="mb-3 form-group row">
-                                    <label class="col-sm-2 col-form-label">Status</label>
-                                    <div class="col-sm-10">
-                                        <select name="status" class="form-control" required>
-                                            <?php if ($explicit_knowledge->status == 0) { ?>
-                                                <option value="0">Inactive</option>
-                                                <option value="1">Active</option>
-                                            <?php }elseif ($explicit_knowledge->status == 1) { ?>
-                                                <option value="0">Inactive</option>
-                                                <option value="1">Active</option>
-                                            <?php } ?>
-                                        </select>
                                     </div>
                                 </div>
                                 <br>

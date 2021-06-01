@@ -6,7 +6,7 @@ class TacitKnowledgeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['TacitKnowledgeModel']);
+        $this->load->model(['TacitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -24,31 +24,52 @@ class TacitKnowledgeController extends CI_Controller {
     
     public function create()
     {
+        $data['knowledge_categories'] = $this->KnowledgeCategoryModel->get()->result();
+
         $this->load->view('templates/header');
-        $this->load->view('tacit_knowledge/create');
+        $this->load->view('tacit_knowledge/create', $data);
         $this->load->view('templates/footer');
     }
 
     public function store()
     {
-        $category = $this->input->post('category');
+        $knowledge_category_id = $this->input->post('knowledge_category_id');
         $title = $this->input->post('title');
         $content = $this->input->post('content');
-        $status = $this->input->post('status');
+        $is_visible_to_visitor = $this->input->post('is_visible_to_visitor');
         $creator_id = $this->session->userdata('id');
         $created_at = date("Y-m-d H-i-s");
 
         $data = array(
-            'category' => $category,
+            'knowledge_category_id' => $knowledge_category_id,
             'title' => $title,
             'content' => $content,
-            'status' => $status,
+            'is_visible_to_visitor' => $is_visible_to_visitor,
+            'status' => 1,
             'creator_id' => $creator_id,
             'created_at' => $created_at
         );
 
         $this->TacitKnowledgeModel->insert($data);
-        $this->session->set_flashdata('success', "Success create tacit_knowledge!");
+        $last_id = $this->db->insert_id();
+
+        $user_id = $this->session->userdata('id');
+        $users = $this->UserModel->getWithoutMe($user_id)->result();
+
+        foreach ($users as $key => $value) {
+            $notif = array(
+                'user_id' => $value->id,
+                'knowledge_id' => $last_id,
+                'title' => $title,
+                'content' => $content,
+                'is_tacit' => 1,
+                'is_read' => 0,
+                'created_at' => $created_at
+            );
+            $this->NotificationModel->insert($notif);
+        }
+
+        $this->session->set_flashdata('success', "Success create tacit knowledge!");
         return redirect(base_url('tacit_knowledge'));
     }
 
@@ -61,8 +82,25 @@ class TacitKnowledgeController extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function show_from_notif($id)
+    {
+        $data = array(
+            'is_read' => 1
+        );
+        $this->NotificationModel->update($data, $id);
+
+        $temp = $this->NotificationModel->getById($id)->row();
+
+        $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($temp->knowledge_id)->row();;
+
+        $this->load->view('templates/header');
+        $this->load->view('tacit_knowledge/show', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function edit($id)
     {
+        $data['knowledge_categories'] = $this->KnowledgeCategoryModel->get()->result();
         $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($id)->row();
 
         $this->load->view('templates/header');
@@ -72,18 +110,19 @@ class TacitKnowledgeController extends CI_Controller {
 
     public function update($id)
     {
-        $category = $this->input->post('category');
+        $knowledge_category_id = $this->input->post('knowledge_category_id');
         $title = $this->input->post('title');
         $content = $this->input->post('content');
-        $status = $this->input->post('status');
+        $is_visible_to_visitor = $this->input->post('is_visible_to_visitor');
         $updater_id = $this->session->userdata('id');
         $updated_at = date("Y-m-d H-i-s");
 
         $data = array(
-            'category' => $category,
+            'knowledge_category_id' => $knowledge_category_id,
             'title' => $title,
             'content' => $content,
-            'status' => $status,
+            'is_visible_to_visitor' => $is_visible_to_visitor,
+            'status' => 1,
             'updater_id' => $updater_id,
             'updated_at' => $updated_at
         );

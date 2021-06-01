@@ -3,102 +3,87 @@
     <?php $this->load->view('components/sidebar') ?>
     <div id="layoutSidenav_content">
         <main>
-            <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-                <div class="container-xl px-4">
-                    <div class="page-header-content">
-                        <div class="row align-items-center justify-content-between pt-3">
-                            <div class="col-auto mb-3">
-                                <h1 class="page-header-title">
-                                    <div class="page-header-icon"><i data-feather="user"></i></div>
-                                    Account Settings - Profile
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <br>
             </header>
-            <!-- Main page content-->
             <div class="container-xl px-4 mt-4">
-                <!-- Account page navigation-->
-                <nav class="nav nav-borders">
-                    <a class="nav-link active ms-0" href="account-profile.html">Profile</a>
-                    <a class="nav-link" href="account-billing.html">Billing</a>
-                    <a class="nav-link" href="account-security.html">Security</a>
-                    <a class="nav-link" href="account-notifications.html">Notifications</a>
-                </nav>
-                <hr class="mt-0 mb-4" />
+            <?php if ($this->session->flashdata('success')) { ?>
+                <div class="alert alert-primary" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
+                <?php $this->session->unset_userdata('success'); ?>
+            <?php } elseif ($this->session->flashdata('warning')) { ?>
+                <div class="alert alert-warning" role="alert"><?php echo $this->session->flashdata('warning'); ?></div>
+                <?php $this->session->unset_userdata('warning'); ?>
+            <?php } ?>
                 <div class="row">
                     <div class="col-xl-4">
-                        <!-- Profile picture card-->
+                        <form method="POST" action="<?php echo base_url('profile/update/'); echo $profile->id; ?>" enctype="multipart/form-data">
                         <div class="card mb-4 mb-xl-0">
                             <div class="card-header">Profile Picture</div>
                             <div class="card-body text-center">
-                                <!-- Profile picture image-->
-                                <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="" />
-                                <!-- Profile picture help block-->
-                                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                                <!-- Profile picture upload button-->
-                                <button class="btn btn-primary" type="button">Upload new image</button>
+                                <img class="img-account-profile rounded-circle mb-2" src="<?php echo base_url('uploads/user/'); echo $profile->image ?>" alt="" />
+                                <div class="small font-italic text-muted"><?php echo $profile->name; ?></div>
+                                <input class="form-control" type="file" name="image" value="<?php echo $profile->nip; ?>" />
+                                <hr>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-8">
-                        <!-- Account details card-->
                         <div class="card mb-4">
                             <div class="card-header">Account Details</div>
                             <div class="card-body">
-                                <form>
-                                    <!-- Form Group (username)-->
                                     <div class="mb-3">
-                                        <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                        <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username" />
-                                    </div>
-                                    <!-- Form Row-->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group (first name)-->
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="inputFirstName">First name</label>
-                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie" />
-                                        </div>
-                                        <!-- Form Group (last name)-->
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="inputLastName">Last name</label>
-                                            <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna" />
-                                        </div>
-                                    </div>
-                                    <!-- Form Row        -->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group (organization name)-->
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap" />
-                                        </div>
-                                        <!-- Form Group (location)-->
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="inputLocation">Location</label>
-                                            <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA" />
-                                        </div>
-                                    </div>
-                                    <!-- Form Group (email address)-->
+                                        <label class="small mb-1">NIP</label>
+                                        <input class="form-control" type="text" value="<?php echo $profile->nip; ?>" readonly>
+                                    </div>      
                                     <div class="mb-3">
-                                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com" />
-                                    </div>
-                                    <!-- Form Row-->
+                                        <label class="small mb-1">Name</label>
+                                        <input class="form-control" type="text" name="name" value="<?php echo $profile->name; ?>" required>
+                                    </div>                               
                                     <div class="row gx-3 mb-3">
-                                        <!-- Form Group (phone number)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputPhone">Phone number</label>
-                                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567" />
+                                            <label class="small mb-1">Email</label>
+                                            <input class="form-control" type="text" name="email" value="<?php echo $profile->email; ?>" />
                                         </div>
-                                        <!-- Form Group (birthday)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                            <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988" />
+                                            <label class="small mb-1">Position</label>
+                                            <input class="form-control" type="text" name="position" value="<?php echo $profile->position; ?>">
                                         </div>
                                     </div>
-                                    <!-- Save changes button-->
-                                    <button class="btn btn-primary" type="button">Save changes</button>
+                                    <div class="mb-3">
+                                        <label class="small mb-1">Sex</label>
+                                        <select name="sex" class="form-control" required>
+                                            <?php if ($value->sex == 0) { ?>
+                                                <option value="0">Female</option>
+                                                <option value="1">Male</option>
+                                            <?php }elseif ($value->sex == 1) { ?>
+                                                <option value="1">Male</option>
+                                                <option value="0">Female</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div> 
+                                    <div class="mb-3">
+                                        <label class="small mb-1">Birth Place</label>
+                                        <textarea rows="3" class="form-control" name="birth_place"><?php echo $profile->birth_place; ?></textarea>
+                                    </div>
+                                    <div class="row gx-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="small mb-1">Religion</label>
+                                            <input class="form-control" type="text" name="religion" value="<?php echo $profile->religion; ?>" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1">Phone Number</label>
+                                            <input class="form-control" type="text" name="phone_number" value="<?php echo $profile->phone_number; ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="small mb-1">Address</label>
+                                        <textarea rows="3" class="form-control" name="address"><?php echo $profile->address; ?></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="small mb-1"></label>
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary" type="button">Update</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -106,17 +91,6 @@
                 </div>
             </div>
         </main>
-        <footer class="footer-admin mt-auto footer-light">
-            <div class="container-xl px-4">
-                <div class="row">
-                    <div class="col-md-6 small">Copyright © Your Website 2021</div>
-                    <div class="col-md-6 text-md-end small">
-                        <a href="#!">Privacy Policy</a>
-                        ·
-                        <a href="#!">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php $this->load->view('components/footer') ?>
     </div>
 </div>

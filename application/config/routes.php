@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'AuthController';
 $route['auth/login'] = 'AuthController/login';
 $route['home'] = 'HomeController';
+$route['home/knowledge/(:any)'] = 'HomeController/knowledge/$1';
 $route['logout'] = 'HomeController/logout';
 
 // routes for user
@@ -74,15 +75,17 @@ $route['tacit_knowledge/create'] = 'TacitKnowledgeController/create';
 $route['tacit_knowledge/store'] = 'TacitKnowledgeController/store';
 $route['tacit_knowledge/edit/(:any)'] = 'TacitKnowledgeController/edit/$1';
 $route['tacit_knowledge/show/(:any)'] = 'TacitKnowledgeController/show/$1';
+$route['tacit_knowledge/show/(:any)/(:any)'] = 'TacitKnowledgeController/show_from_notif/$1/$1';
 $route['tacit_knowledge/update/(:any)'] = 'TacitKnowledgeController/update/$1';
 $route['tacit_knowledge/destroy/(:any)'] = 'TacitKnowledgeController/destroy/$1';
 
-// routes for tacit knowledge
+// routes for explicit knowledge
 $route['explicit_knowledge'] = 'ExplicitKnowledgeController';
 $route['explicit_knowledge/create'] = 'ExplicitKnowledgeController/create';
 $route['explicit_knowledge/store'] = 'ExplicitKnowledgeController/store';
 $route['explicit_knowledge/edit/(:any)'] = 'ExplicitKnowledgeController/edit/$1';
 $route['explicit_knowledge/show/(:any)'] = 'ExplicitKnowledgeController/show/$1';
+$route['explicit_knowledge/show/(:any)/(:any)'] = 'ExplicitKnowledgeController/show_from_notif/$1/$1';
 $route['explicit_knowledge/update/(:any)'] = 'ExplicitKnowledgeController/update/$1';
 $route['explicit_knowledge/destroy/(:any)'] = 'ExplicitKnowledgeController/destroy/$1';
 
@@ -92,7 +95,47 @@ $route['knowledge_validate/create'] = 'KnowledgeValidateController/create';
 $route['knowledge_validate/store'] = 'KnowledgeValidateController/store';
 $route['knowledge_validate/edit/(:any)'] = 'KnowledgeValidateController/edit/$1';
 $route['knowledge_validate/show/(:any)'] = 'KnowledgeValidateController/show/$1';
+$route['knowledge_validate/show/tacit/(:any)'] = 'KnowledgeValidateController/show_tacit/$1';
+$route['knowledge_validate/show/explicit/(:any)'] = 'KnowledgeValidateController/show_explicit/$1';
 $route['knowledge_validate/update/(:any)'] = 'KnowledgeValidateController/update/$1';
 $route['knowledge_validate/destroy/(:any)'] = 'KnowledgeValidateController/destroy/$1';
 $route['knowledge_validate/accept_by_admin/(:any)'] = 'KnowledgeValidateController/accept_by_admin/$1';
 $route['knowledge_validate/reject_by_admin/(:any)'] = 'KnowledgeValidateController/reject_by_admin/$1';
+
+// routes for tacit knowledge Category
+$route['knowledge_category'] = 'KnowledgeCategoryController';
+$route['knowledge_category/create'] = 'KnowledgeCategoryController/create';
+$route['knowledge_category/store'] = 'KnowledgeCategoryController/store';
+$route['knowledge_category/edit/(:any)'] = 'KnowledgeCategoryController/edit/$1';
+$route['knowledge_category/show/(:any)'] = 'KnowledgeCategoryController/show/$1';
+$route['knowledge_category/update/(:any)'] = 'KnowledgeCategoryController/update/$1';
+$route['knowledge_category/destroy/(:any)'] = 'KnowledgeCategoryController/destroy/$1';
+
+// routes for about
+$route['about'] = 'AboutController';
+$route['about/create'] = 'AboutController/create';
+$route['about/store'] = 'AboutController/store';
+$route['about/edit/(:any)'] = 'AboutController/edit/$1';
+$route['about/show/(:any)'] = 'AboutController/show/$1';
+$route['about/update/(:any)'] = 'AboutController/update/$1';
+$route['about/destroy/(:any)'] = 'AboutController/destroy/$1';
+
+// routes for knowledge
+$route['knowledge'] = 'KnowledgeController';
+$route['knowledge/create'] = 'KnowledgeController/create';
+$route['knowledge/store'] = 'KnowledgeController/store';
+$route['knowledge/edit/(:any)'] = 'KnowledgeController/edit/$1';
+$route['knowledge/show/(:any)'] = 'KnowledgeController/show/$1';
+$route['knowledge/update/(:any)'] = 'KnowledgeController/update/$1';
+$route['knowledge/destroy/(:any)'] = 'KnowledgeController/destroy/$1';
+
+// routes for profile
+$route['profile'] = 'ProfileController';
+$route['profile/create'] = 'ProfileController/create';
+$route['profile/store'] = 'ProfileController/store';
+$route['profile/edit/(:any)'] = 'ProfileController/edit/$1';
+$route['profile/show/(:any)'] = 'ProfileController/show/$1';
+$route['profile/update/(:any)'] = 'ProfileController/update/$1';
+$route['profile/destroy/(:any)'] = 'ProfileController/destroy/$1';
+$route['profile/change_password'] = 'ProfileController/change_password';
+$route['profile/update_password'] = 'ProfileController/update_password';

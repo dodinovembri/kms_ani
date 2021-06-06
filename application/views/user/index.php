@@ -44,7 +44,7 @@
                                             <td><?= check_role($value->role_id); ?></td>
                                             <td>
                                                 <?php if ($this->session->userdata('role_id') == 2) { ?>
-                                                    <a href="<?php echo base_url('user/chat/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="mail"></i></button></a>
+                                                    <a href="<?php echo base_url('chat/chat_with/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="mail"></i></button></a>
                                                 <?php }else{ ?>
                                                     <a href="<?php echo base_url('user/show/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="eye"></i></button></a>
                                                     <a href="<?php echo base_url('user/edit/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="edit"></i></button></a>

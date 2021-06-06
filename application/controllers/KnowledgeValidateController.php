@@ -61,8 +61,12 @@ class KnowledgeValidateController extends CI_Controller {
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
-
-        $this->TacitKnowledgeModel->update($data, $id);
+        $knowledge = $this->HelperModel->getWithUnionById($id)->row();
+        if ($knowledge->is_tacit == 1) {            
+            $this->TacitKnowledgeModel->update($data, $id);
+        }else{
+            $this->ExplicitKnowledgeModel->update($data, $id);
+        }
         $this->session->set_flashdata('success', "Success accept Tacit Knowledge!");
         return redirect(base_url('knowledge_validate'));
     }
@@ -74,8 +78,13 @@ class KnowledgeValidateController extends CI_Controller {
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
+        $knowledge = $this->HelperModel->getWithUnionById($id)->row();
 
-        $this->TacitKnowledgeModel->update($data, $id);
+        if ($knowledge->is_tacit == 1) {            
+            $this->TacitKnowledgeModel->update($data, $id);
+        }else{
+            $this->ExplicitKnowledgeModel->update($data, $id);
+        }
         $this->session->set_flashdata('warning', "This Knowledge has been rejected!");
         return redirect(base_url('knowledge_validate'));
     }    
@@ -87,8 +96,14 @@ class KnowledgeValidateController extends CI_Controller {
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
+        $knowledge = $this->HelperModel->getWithUnionById($id)->row();
 
-        $this->TacitKnowledgeModel->update($data, $id);
+        if ($knowledge->is_tacit == 1) {            
+            $this->TacitKnowledgeModel->update($data, $id);
+        }else{
+            $this->ExplicitKnowledgeModel->update($data, $id);
+        }
+
         $this->session->set_flashdata('success', "Success accept Tacit Knowledge!");
         return redirect(base_url('knowledge_validate'));
     }
@@ -100,8 +115,12 @@ class KnowledgeValidateController extends CI_Controller {
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
-
-        $this->TacitKnowledgeModel->update($data, $id);
+        $knowledge = $this->HelperModel->getWithUnionById($id)->row();
+        if ($knowledge->is_tacit == 1) {            
+            $this->TacitKnowledgeModel->update($data, $id);
+        }else{
+            $this->ExplicitKnowledgeModel->update($data, $id);
+        }
         $this->session->set_flashdata('warning', "This Knowledge has been rejected!");
         return redirect(base_url('knowledge_validate'));
     }        

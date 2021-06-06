@@ -6,7 +6,7 @@ class ExplicitKnowledgeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['ExplicitKnowledgeModel', 'KnowledgeCategoryModel']);
+        $this->load->model(['ExplicitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel', 'ActivityModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -15,8 +15,15 @@ class ExplicitKnowledgeController extends CI_Controller {
 
 	public function index()
 	{
-        $data['explicit_knowledges'] = $this->ExplicitKnowledgeModel->get()->result();
-
+        if ($this->session->userdata('role_id') == 0) {
+            $data['explicit_knowledges'] = $this->ExplicitKnowledgeModel->getWithJoin()->result();
+        }elseif ($this->session->userdata('role_id') == 1) {
+            $data['explicit_knowledges'] = $this->ExplicitKnowledgeModel->getWithJoin()->result();
+        }elseif ($this->session->userdata('role_id') == 2) {
+            $data['explicit_knowledges'] = $this->ExplicitKnowledgeModel->getWithJoin()->result();
+        }elseif ($this->session->userdata('role_id') == 3) {
+            $data['explicit_knowledges'] = $this->ExplicitKnowledgeModel->getWithJoinByWhere(4)->result();    
+        }
         $this->load->view('templates/header');
 		$this->load->view('explicit_knowledge/index', $data);
         $this->load->view('templates/footer');
@@ -36,6 +43,7 @@ class ExplicitKnowledgeController extends CI_Controller {
         $knowledge_category_id = $this->input->post('knowledge_category_id');
         $title = $this->input->post('title');
         $description = $this->input->post('description');
+        $is_visible_to_visitor = $this->input->post('is_visible_to_visitor');
         $creator_id = $this->session->userdata('id');
         $created_at = date("Y-m-d H-i-s");
 
@@ -52,8 +60,9 @@ class ExplicitKnowledgeController extends CI_Controller {
             $data = array(
                 'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
-                'description' => $description,
-                'status' => 1,
+                'content' => $description,
+                'is_visible_to_visitor' => $is_visible_to_visitor,
+                'status' => 2,
                 'file' => $this->upload->data('file_name'),
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
@@ -64,14 +73,39 @@ class ExplicitKnowledgeController extends CI_Controller {
             $data = array(
                 'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
-                'description' => $description,
-                'status' => 1,
+                'contet' => $description,
+                'is_visible_to_visitor' => $is_visible_to_visitor,
+                'status' => 2,
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
             );
         }
 
         $this->ExplicitKnowledgeModel->insert($data);
+        $last_id = $this->db->insert_id();
+
+        $user_id = $this->session->userdata('id');
+        $users = $this->UserModel->getWithoutMe($user_id)->result();
+
+        foreach ($users as $key => $value) {
+            $notif = array(
+                'user_id' => $value->id,
+                'knowledge_id' => $last_id,
+                'title' => $title,
+                'content' => $description,
+                'is_tacit' => 0,
+                'is_read' => 0,
+                'created_at' => $created_at
+            );
+            $this->NotificationModel->insert($notif);
+        }
+
+        $activity = array(
+            'message' => $this->session->userdata('name')." Create ".$title,
+            'created_at' => $created_at
+        );
+        $this->ActivityModel->insert($activity);
+
         $this->session->set_flashdata('success', "Success create Explicit Knowledge!");
         return redirect(base_url('explicit_knowledge'));
     }

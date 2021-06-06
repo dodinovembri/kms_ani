@@ -6,12 +6,13 @@ class HomeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['KnowledgeCategoryModel']);
+        $this->load->model(['KnowledgeCategoryModel', 'ActivityModel']);
     }
 
 	public function index()
 	{
         $data['knowledge_categories'] = $this->KnowledgeCategoryModel->get()->result();
+        $data['activities'] = $this->ActivityModel->get()->result();
 
         $this->load->view('templates/header');
         $this->load->view('home/index', $data);

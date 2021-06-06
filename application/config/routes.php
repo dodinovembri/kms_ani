@@ -66,8 +66,6 @@ $route['user/create'] = 'UserController/create';
 $route['user/store'] = 'UserController/store';
 $route['user/edit/(:any)'] = 'UserController/edit/$1';
 $route['user/show/(:any)'] = 'UserController/show/$1';
-$route['user/chat/(:any)'] = 'UserController/chat/$1';
-$route['user/store_chat'] = 'UserController/store_chat';
 $route['user/update/(:any)'] = 'UserController/update/$1';
 $route['user/destroy/(:any)'] = 'UserController/destroy/$1';
 
@@ -150,3 +148,28 @@ $route['search'] = 'SearchController';
 
 // routes for help
 $route['help'] = 'HelpController';
+$route['help/create'] = 'HelpController/create';
+$route['help/store'] = 'HelpController/store';
+$route['help/edit/(:any)'] = 'HelpController/edit/$1';
+$route['help/show/(:any)'] = 'HelpController/show/$1';
+$route['help/update/(:any)'] = 'HelpController/update/$1';
+$route['help/destroy/(:any)'] = 'HelpController/destroy/$1';
+
+// routes for chat
+$route['chat'] = 'ChatController';
+$route['chat/chat_with/(:any)'] = 'ChatController/chat_with/$1';
+$route['chat/create'] = 'ChatController/create';
+$route['chat/store'] = 'ChatController/store';
+$route['chat/edit/(:any)'] = 'ChatController/edit/$1';
+$route['chat/show/(:any)'] = 'ChatController/show/$1';
+$route['chat/update/(:any)'] = 'ChatController/update/$1';
+$route['chat/destroy/(:any)'] = 'ChatController/destroy/$1';
+
+// routes for help comment
+$route['help_comment'] = 'HelpCommentController';
+$route['help_comment/create'] = 'HelpCommentController/create';
+$route['help_comment/store/(:any)'] = 'HelpCommentController/store/$1';
+$route['help_comment/edit/(:any)'] = 'HelpCommentController/edit/$1';
+$route['help_comment/show/(:any)'] = 'HelpCommentController/show/$1';
+$route['help_comment/update/(:any)'] = 'HelpCommentController/update/$1';
+$route['help_comment/destroy/(:any)'] = 'HelpCommentController/destroy/$1';

@@ -1,8 +1,8 @@
 <?php
 
-class HelpModel extends CI_Model
+class HelpCommentModel extends CI_Model
 {
-    private $_table = "help";
+    private $_table = "help_comment";
 
     public function get()
     {
@@ -20,13 +20,11 @@ class HelpModel extends CI_Model
         $this->db->where('id', $id);
         return $this->db->get($this->_table);
     }
-    
-    public function getByWhere($user_id)
+
+    public function getByWhere($id)
     {
-        $this->db->where('user_id', $user_id);
-        $this->db->where('is_read', 0);
-        return $this->db->get($this->_table);
-    }
+        return $this->db->query("select help_comment.*, users.name as name, users.image as image from help_comment JOIN users ON help_comment.creator_id = users.id where help_id = $id");
+    }    
 
     public function update($data, $id)
     {

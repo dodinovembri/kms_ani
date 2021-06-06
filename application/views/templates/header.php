@@ -14,7 +14,7 @@
         <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/assets/img/favicon.png') ?>" />
         <script data-search-pseudo-elements="" defer="" src="<?php echo base_url('assets/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js') ?>" crossorigin="anonymous"></script>
         <script src="<?php echo base_url('assets/cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js') ?>" crossorigin="anonymous"></script>            
-                
+        <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
     </head>
     <?php if ($this->session->userdata('logged_in') != 1) { ?>
         <body class="bg-primary">

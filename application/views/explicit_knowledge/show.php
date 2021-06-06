@@ -24,7 +24,7 @@
                             <div class="mb-3 form-group row">
                                 <label class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="category" value="<?php echo $explicit_knowledge->knowledge_category_id ?>">
+                                    <input class="form-control" type="text" name="category" value="<?php echo $explicit_knowledge->category_code ?>">
                                 </div>
                             </div>
                             <div class="mb-3 form-group row">
@@ -42,15 +42,9 @@
                             <div class="mb-3 form-group row">
                                 <label class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-10">
-                                    <textarea name="description" rows="7" class="form-control" required><?php echo $explicit_knowledge->description ?></textarea>
+                                    <textarea name="description" id="editor" rows="7" class="form-control" required><?php echo $explicit_knowledge->content ?></textarea>
                                 </div>
-                            </div>
-                            <div class="mb-3 form-group row">
-                                <label class="col-sm-2 col-form-label">Status</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="title" value="<?php echo $explicit_knowledge->status == 0 ? "Inactive" : "Active" ?>">    
-                                </div>
-                            </div>
+                            </div>                            
                             <br>
                             <div class="mb-3 form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
@@ -61,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-            </main>
+            </main>            
             <?php $this->load->view('components/footer') ?>
         </div>
     </div>

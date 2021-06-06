@@ -42,7 +42,7 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Content</label>
                                     <div class="col-sm-10">
-                                        <textarea name="content" rows="7" class="form-control" required><?php echo $tacit_knowledge->content; ?></textarea>
+                                        <textarea name="content" id="editor" rows="7" class="form-control" required><?php echo $tacit_knowledge->content; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 form-group row">

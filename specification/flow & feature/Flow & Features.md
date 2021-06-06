@@ -8,6 +8,7 @@
 - [ ] Manage Knowledge Category
 - [ ] Manage User
 - [ ] Upload Tacit Knowledge
+- [ ] Verify Tacit Knowledge Uploaded
 
 ## Staff Ahli
 - [ ] Login
@@ -15,3 +16,5 @@
 
 ## Visitor
 - [ ] Login
+- [ ] See Tacit Knowledge
+- [ ] Comment Tacit Knowledge

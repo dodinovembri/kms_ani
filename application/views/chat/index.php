@@ -15,16 +15,19 @@
                         <div class="inbox_msg">
                             <div class="inbox_people">
                                 <div class="inbox_chat">
-                                    <?php foreach ($chat_headers as $key => $value) { ?>
-                                        <a href="<?php echo base_url('user/chat/'); echo $value->send_to_id; ?>">
-                                            <div class="chat_list <?php if ($this->session->userdata('employee_id') == $value->send_to_id) {
+                                    <?php foreach ($users as $key => $value) { ?>
+                                        <?php if ($this->session->userdata('id') == $value->id) {
+                                            continue;
+                                        } ?>
+                                        <a href="<?php echo base_url('chat/chat_with/'); echo $value->id; ?>">
+                                            <div class="chat_list <?php if ($this->session->userdata('receiver_id') == $value->id) {
                                                 echo "active_chat";
                                             } ?>">
                                                 <div class="chat_people">
                                                     <div class="chat_img"> <img src="<?php echo base_url('uploads/user/'); echo $value->image ?>" alt="sunil"> </div>
                                                     <div class="chat_ib">
-                                                        <h5><?php echo $value->name ?> <span class="chat_date"><?php echo $value->created_at ?></span></h5>
-                                                        <p><?php echo $value->message ?></p>
+                                                        <h5><?php echo $value->name ?> <span class="chat_date"><?php echo "" ?></span></h5>
+                                                        <p><?php echo "Chat with this user" ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -34,31 +37,33 @@
                             </div>
                             <div class="mesgs">
                                 <div class="msg_history">
-                                    <?php foreach ($chats as $key => $value) { 
-                                        if ($value->send_to_id != $this->session->userdata('id')) { ?>
-                                            <div class="outgoing_msg">
-                                                <div class="sent_msg">
-                                                    <p><?php echo $value->message ?></p>
-                                                    <span class="time_date"> <?php echo $value->created_at ?></span>
-                                                </div>
-                                            </div>
-                                        <?php }else{ ?>
-                                            <div class="incoming_msg">
-                                                <div class="incoming_msg_img"> <img src="<?php echo base_url('uploads/user/'); echo $value->image ?>" alt="sunil"> </div>
-                                                <div class="received_msg">
-                                                    <div class="received_withd_msg">
+                                    <?php if (isset($chats)) { ?>
+                                        <?php foreach ($chats as $key => $value) { 
+                                            if ($value->send_to_id != $this->session->userdata('id')) { ?>
+                                                <div class="outgoing_msg">
+                                                    <div class="sent_msg">
                                                         <p><?php echo $value->message ?></p>
                                                         <span class="time_date"> <?php echo $value->created_at ?></span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php }else{ ?>
+                                                <div class="incoming_msg">
+                                                    <div class="incoming_msg_img"> <img src="<?php echo base_url('uploads/user/'); echo $value->image ?>" alt="sunil"> </div>
+                                                    <div class="received_msg">
+                                                        <div class="received_withd_msg">
+                                                            <p><?php echo $value->message ?></p>
+                                                            <span class="time_date"> <?php echo $value->created_at ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
                                         <?php } ?>
-                                    <?php } ?>                                    
+                                    <?php } ?>
                                 </div>
                                 <div class="type_msg">
-                                    <form action="<?php echo base_url('user/store_chat') ?>" method="POST">
+                                    <form action="<?php echo base_url('chat/store') ?>" method="POST">
                                         <div class="input_msg_write">
-                                            <input type="hidden" name="receiver_id" value="<?php echo $receiver_id ?>">
+                                            <!-- <input type="hidden" name="receiver_id" value=""> -->
                                             <input type="text" name="message" class="write_msg" placeholder="Type a message" />
                                             <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                         </div>

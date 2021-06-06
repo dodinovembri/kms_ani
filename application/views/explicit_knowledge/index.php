@@ -9,7 +9,9 @@
                     <div class="card mb-4">
                         <div class="card-header">Explicit Knowledge List</div>
                         <div class="card-body">
-                            <a href="<?php echo base_url('explicit_knowledge/create') ?>"><button class="btn btn-primary" type="button">Create New</button></a><br><br>
+                            <?php if ($this->session->userdata('role_id') != 3) { ?>
+                                <a href="<?php echo base_url('explicit_knowledge/create') ?>"><button class="btn btn-primary" type="button">Create New</button></a><br><br>
+                            <?php } ?>
                             <?php if ($this->session->flashdata('success')) { ?>
                                 <div class="alert alert-primary" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
                                 <?php $this->session->unset_userdata('success'); ?>
@@ -36,16 +38,18 @@
                                         $no++; ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $value->knowledge_category_id ?></td>
+                                            <td><?= $value->category_code ?></td>
                                             <td><?= $value->title ?></td>
                                             <td><a target="_blank" href="<?php echo base_url('uploads/explicit_knowledge/'); echo $value->file; ?>"><?= $value->file ?></a></td>
                                             <td><?= check_status($value->status) ?></td>
-                                            <td><?= $value->creator_id ?></td>
+                                            <td><?= $value->name ?></td>
                                             <td><?= $value->created_at ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('explicit_knowledge/show/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="eye"></i></button></a>
-                                                <a href="<?php echo base_url('explicit_knowledge/edit/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="edit"></i></button></a>
-                                                <a href="#"><button class="btn btn-datatable btn-icon btn-transparent-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $value->id; ?>"><i data-feather="trash-2"></i></button></a>
+                                                <?php if ($this->session->userdata('role_id') != 3) { ?>
+                                                    <a href="<?php echo base_url('explicit_knowledge/edit/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="edit"></i></button></a>
+                                                    <a href="#"><button class="btn btn-datatable btn-icon btn-transparent-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $value->id; ?>"><i data-feather="trash-2"></i></button></a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="exampleModal<?php echo $value->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

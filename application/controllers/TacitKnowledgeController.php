@@ -6,7 +6,7 @@ class TacitKnowledgeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['TacitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel', 'TacitCommentModel']);
+        $this->load->model(['TacitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel', 'TacitCommentModel', 'ActivityModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -77,6 +77,12 @@ class TacitKnowledgeController extends CI_Controller {
             $this->NotificationModel->insert($notif);
         }
 
+        $activity = array(
+            'message' => $this->session->userdata('name')." Create ".$title,
+            'created_at' => $created_at
+        );
+        $this->ActivityModel->insert($activity);
+
         $this->session->set_flashdata('success', "Success create tacit knowledge!");
         return redirect(base_url('tacit_knowledge'));
     }
@@ -100,7 +106,8 @@ class TacitKnowledgeController extends CI_Controller {
 
         $temp = $this->NotificationModel->getById($id)->row();
 
-        $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($temp->knowledge_id)->row();;
+        $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($temp->knowledge_id)->row();
+        $data['tacit_comments'] = $this->TacitCommentModel->getByWhere($temp->knowledge_id)->result();
 
         $this->load->view('templates/header');
         $this->load->view('tacit_knowledge/show', $data);

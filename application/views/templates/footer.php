@@ -1,3 +1,11 @@
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    
     <script data-cfasync="false" src="<?php echo base_url('assets/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') ?>"></script><script src="<?php echo base_url('assets/cdn.jsdelivr.net/npm/bootstrap%405.0.1/dist/js/bootstrap.bundle.min.js') ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/js/scripts.js') ?>"></script>
     <script src="<?php echo base_url('assets/cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js') ?>" crossorigin="anonymous"></script>

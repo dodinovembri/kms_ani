@@ -1,12 +1,11 @@
 <?php
 
-class HelpModel extends CI_Model
+class ActivityModel extends CI_Model
 {
-    private $_table = "help";
+    private $_table = "activity";
 
     public function get()
     {
-        $this->db->where('status', 1);
     	return $this->db->get($this->_table);
     }
 
@@ -19,12 +18,11 @@ class HelpModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->get($this->_table);
-    }
-    
-    public function getByWhere($user_id)
+    }      
+
+    public function getByWhere()
     {
-        $this->db->where('user_id', $user_id);
-        $this->db->where('is_read', 0);
+        $this->db->where('role_id', 3);
         return $this->db->get($this->_table);
     }
 
@@ -38,5 +36,5 @@ class HelpModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete($this->_table);
-    }           
+    } 
 }

@@ -29,17 +29,20 @@
                                     <div class="msg-wrap">
                                         <?php foreach ($tacit_comments as $key => $value) { ?>
                                             <div class="media msg " style="align-items: center;">
-                                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="<?php echo base_url('uploads/user/'); echo $value->image ?>">
+                                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="<?php echo base_url('uploads/user/');
+                                                                                                                                                            echo $value->image ?>">
                                                 <small class="pull-right time"><i class="fa fa-clock"></i> <?php echo $value->created_at ?></small>
                                                 <h5 class="media-heading"><?php echo $value->name ?></h5>
                                                 <div class="media-body">
                                                     <small class="col-lg-10"><?php echo $value->content ?></small>
                                                 </div>
                                             </div>
+                                            <hr>
                                         <?php } ?>
 
                                     </div><br>
-                                    <form action="<?php echo base_url('tacit_knowledge/store_comment/'); echo $tacit_knowledge->id; ?>" method="POST">
+                                    <form action="<?php echo base_url('tacit_knowledge/store_comment/');
+                                                    echo $tacit_knowledge->id; ?>" method="POST">
                                         <div class="send-wrap ">
                                             <textarea class="form-control send-message" name="comment" rows="3" placeholder="Write a reply..."></textarea>
                                         </div> <br>

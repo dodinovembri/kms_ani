@@ -6,7 +6,7 @@ class UserController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('UserModel');
+        $this->load->model(['UserModel', 'ChatModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -15,7 +15,11 @@ class UserController extends CI_Controller {
 
 	public function index()
 	{
-        $data['users'] = $this->UserModel->get()->result();
+        if ($this->session->userdata('role_id') == 2) {
+            $data['users'] = $this->UserModel->getByWhere()->result();
+        }else{
+            $data['users'] = $this->UserModel->get()->result();
+        }
 
         $this->load->view('templates/header');
 		$this->load->view('user/index', $data);
@@ -198,5 +202,39 @@ class UserController extends CI_Controller {
         $delete = $this->UserModel->destroy($id);        
         $this->session->set_flashdata('success', "Success deleted data!");
         return redirect(base_url('user'));
+    }
+
+    public function chat($id)
+    {
+        $employee_id = array('employee_id' => $id, );
+        $this->session->set_userdata($employee_id);
+        
+        $chat = $this->UserModel->getById($id)->row();
+        $user_id = $this->session->userdata('id');
+        $data['chat_headers'] = $this->ChatModel->getWithJoin($user_id)->result();
+        
+        $data['chats'] = $this->ChatModel->getWithJoinWithoutGroup($user_id, $id)->result();
+
+        $data['receiver_id'] = $chat->id;
+
+        $this->load->view('templates/header');
+        $this->load->view('user/chat', $data);
+        $this->load->view('templates/footer');
+    }    
+    
+    public function store_chat()
+    {
+        $receiver_id = $this->input->post('receiver_id');
+        $sender_id = $this->session->userdata('id');
+        $message = $this->input->post('message');
+        $data = array(
+            'send_to_id' => $receiver_id,
+            'send_by_id' => $sender_id,
+            'message' => $message, 
+            'created_at' => date("Y-m-d H-i-s")
+        );
+
+        $this->ChatModel->insert($data);
+        return redirect(base_url("user/chat/$receiver_id"));
     }
 }

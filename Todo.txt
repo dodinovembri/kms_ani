@@ -5,7 +5,7 @@
 - recent member activity/ Dokumentasi log aktivitas
 - Notifikasi aktivitas kalau ada postingan baru after approve
 - Grup diskusi, chat antar anggota
-- Searching\
+- Searching
 
 
 

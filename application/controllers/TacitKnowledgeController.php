@@ -6,7 +6,7 @@ class TacitKnowledgeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['TacitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel']);
+        $this->load->model(['TacitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel', 'TacitCommentModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -15,7 +15,15 @@ class TacitKnowledgeController extends CI_Controller {
 
 	public function index()
 	{
-        $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getNotWhere(2)->result();
+        if ($this->session->userdata('role_id') == 0) {
+            $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getWithJoin()->result();
+        }elseif ($this->session->userdata('role_id') == 1) {
+            $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getWithJoin()->result();
+        }elseif ($this->session->userdata('role_id') == 2) {
+            $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getWithJoin()->result();
+        }elseif ($this->session->userdata('role_id') == 3) {
+            $data['tacit_knowledges'] = $this->TacitKnowledgeModel->getWhere()->result();    
+        }
 
         $this->load->view('templates/header');
 		$this->load->view('tacit_knowledge/index', $data);
@@ -45,7 +53,7 @@ class TacitKnowledgeController extends CI_Controller {
             'title' => $title,
             'content' => $content,
             'is_visible_to_visitor' => $is_visible_to_visitor,
-            'status' => 1,
+            'status' => 2,
             'creator_id' => $creator_id,
             'created_at' => $created_at
         );
@@ -76,6 +84,7 @@ class TacitKnowledgeController extends CI_Controller {
     public function show($id)
     {
         $data['tacit_knowledge'] = $this->TacitKnowledgeModel->getById($id)->row();
+        $data['tacit_comments'] = $this->TacitCommentModel->getByWhere($id)->result();
 
         $this->load->view('templates/header');
         $this->load->view('tacit_knowledge/show', $data);
@@ -137,5 +146,21 @@ class TacitKnowledgeController extends CI_Controller {
         $delete = $this->TacitKnowledgeModel->destroy($id);        
         $this->session->set_flashdata('success', "Success deleted data!");
         return redirect(base_url('tacit_knowledge'));
+    }
+
+    public function store_comment($id)
+    {
+        $comment = $this->input->post('comment');
+        $user_id = $this->session->userdata('id');
+
+        $data = array(
+            'tacit_knowledge_id' => $id,
+            'content' => $comment,
+            'creator_id' => $user_id,
+            'created_at' => date("Y-m-d H-i-s")
+        );
+
+        $this->TacitCommentModel->insert($data);        
+        return redirect(base_url("tacit_knowledge/show/$id"));
     }
 }

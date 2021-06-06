@@ -10,7 +10,6 @@ CREATE TABLE tacit_knowledge (
     `is_visible_to_visitor` TINYINT NULL,
     `is_tacit` TINYINT DEFAULT(1),
     `status` TINYINT NULL,
-    `validate_code` INT NULL,
     `creator_id` INT NULL,
     `created_at` TIMESTAMP NULL,
     `updater_id` INT NULL,
@@ -19,12 +18,12 @@ CREATE TABLE tacit_knowledge (
 );
 ```
 
-## Validate Code
+## Status
 | Code | Name |
 | ---- | ---- |
 | 0 | Not Validated |
-| 1 | Waiting Validate |
-| 2 | Accepted/ Validated by Admin |
+| 1 | Accepted/ Validated by Admin |
+| 2 | Waiting Validate |
 | 3 | Rejected by Admin |
 | 4 | Accepted/ Validated by Kasi |
 | 5 | Rejected by Kasi |

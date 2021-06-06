@@ -13,10 +13,12 @@
                                 <h1 class="text-primary">How can we help?</h1>
                                 <p class="lead mb-4">Search our knowledge base to find answers, or contact us directly if you're having issues!</p>
                                 <div class="shadow rounded">
+                                    <form action="<?php echo base_url('search') ?>" method="POST">
                                     <div class="input-group input-group-joined input-group-joined-xl border-0">
-                                        <input class="form-control me-0" type="text" placeholder="Search..." aria-label="Search" autofocus="" />
-                                        <span class="input-group-text"><i data-feather="search"></i></span>
-                                    </div>
+                                            <input class="form-control me-0" name="word" type="text" placeholder="Search..." aria-label="Search" autofocus="" />
+                                            <span class="input-group-text"><i data-feather="search"></i></span>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-lg-4"><img class="img-fluid" src="<?php echo base_url('assets/assets/img/illustrations/problem-solving.svg') ?>" /></div>

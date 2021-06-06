@@ -1,8 +1,8 @@
 <?php
 
-class UserModel extends CI_Model
+class HelpModel extends CI_Model
 {
-    private $_table = "users";
+    private $_table = "help";
 
     public function get()
     {
@@ -18,11 +18,12 @@ class UserModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->get($this->_table);
-    }      
-
-    public function getByWhere()
+    }
+    
+    public function getByWhere($user_id)
     {
-        $this->db->where('role_id', 3);
+        $this->db->where('user_id', $user_id);
+        $this->db->where('is_read', 0);
         return $this->db->get($this->_table);
     }
 
@@ -36,17 +37,5 @@ class UserModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete($this->_table);
-    } 
-    public function check_auth($email, $password)
-    {
-        $this->db->where('email', $email);
-        $this->db->where('password', $password);
-        return $this->db->get($this->_table);
-    }    
-    
-    public function getWithoutMe($user_id)
-    {
-        $this->db->where('id !=', $user_id);        
-        return $this->db->get($this->_table);
-    }
+    }           
 }

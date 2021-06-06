@@ -36,12 +36,6 @@
                                     All Knowledges
                                 </a>
                                 <div class="sidenav-menu-heading">Setup Management</div>
-                                <a class="nav-link <?php if ($this->uri->segment(1) == "user") {
-                                    echo "active";
-                                } ?>" href="<?php echo base_url('user') ?>">
-                                    <div class="nav-link-icon"><i data-feather="users"></i></div>
-                                    User
-                                </a>
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge_category") {
                                     echo "active";
                                 } ?>" href="<?php echo base_url('knowledge_category') ?>">
@@ -83,12 +77,30 @@
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
                                 </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('knowledge') ?>">
+                                    <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
+                                    All Knowledges
+                                </a>
                                 <div class="sidenav-menu-heading">Setup Management</div>
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "user") {
                                     echo "active";
                                 } ?>" href="<?php echo base_url('user') ?>">
                                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                                     User
+                                </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge_category") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('knowledge_category') ?>">
+                                    <div class="nav-link-icon"><i data-feather="layout"></i></div>
+                                    Knowledge Category
+                                </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "about") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('about') ?>">
+                                    <div class="nav-link-icon"><i data-feather="alert-circle"></i></div>
+                                    About
                                 </a>
                             </div>
                         <?php }elseif ($this->session->userdata('role_id') == 2) { ?>
@@ -101,12 +113,6 @@
                                     Dashboard
                                 </a>
                                 <div class="sidenav-menu-heading">Knowledge Management</div>
-                                <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge_validate") {
-                                    echo "active";
-                                } ?>" href="<?php echo base_url('knowledge_validate') ?>">
-                                    <div class="nav-link-icon"><i data-feather="check-circle"></i></div>
-                                    Validation Knowledge
-                                </a> 
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "tacit_knowledge") {
                                     echo "active";
                                 } ?>" href="<?php echo base_url('tacit_knowledge') ?>">
@@ -118,6 +124,12 @@
                                 } ?>" href="<?php echo base_url('explicit_knowledge') ?>">
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
+                                </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('knowledge') ?>">
+                                    <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
+                                    All Knowledges
                                 </a>
                                 <div class="sidenav-menu-heading">Setup Management</div>
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "user") {
@@ -137,12 +149,6 @@
                                     Dashboard
                                 </a>
                                 <div class="sidenav-menu-heading">Knowledge Management</div>
-                                <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge_validate") {
-                                    echo "active";
-                                } ?>" href="<?php echo base_url('knowledge_validate') ?>">
-                                    <div class="nav-link-icon"><i data-feather="check-circle"></i></div>
-                                    Validation Knowledge
-                                </a> 
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "tacit_knowledge") {
                                     echo "active";
                                 } ?>" href="<?php echo base_url('tacit_knowledge') ?>">
@@ -155,12 +161,17 @@
                                     <div class="nav-link-icon"><i data-feather="layout"></i></div>
                                     Explicit Knowledge
                                 </a>
-                                <div class="sidenav-menu-heading">Setup Management</div>
-                                <a class="nav-link <?php if ($this->uri->segment(1) == "user") {
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge") {
                                     echo "active";
-                                } ?>" href="<?php echo base_url('user') ?>">
-                                    <div class="nav-link-icon"><i data-feather="users"></i></div>
-                                    User
+                                } ?>" href="<?php echo base_url('knowledge') ?>">
+                                    <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
+                                    All Knowledges
+                                </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "help") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('help') ?>">
+                                    <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
+                                    Helps
                                 </a>
                             </div>
 

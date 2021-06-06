@@ -50,6 +50,9 @@
                         <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Notifications</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="<?php echo base_url('user/chat/'); echo $this->session->userdata('id') ?>" role="button" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
+                </li>
                 <!-- User Dropdown-->
                 <?php 
                     $CI =& get_instance();

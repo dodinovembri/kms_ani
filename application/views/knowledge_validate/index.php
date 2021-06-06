@@ -33,9 +33,9 @@
                                         $no++; ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $value->knowledge_category_id ?></td>
+                                            <td><?= $value->category_code ?></td>
                                             <td><?= $value->title ?></td>
-                                            <td><?= $value->creator_id ?></td>
+                                            <td><?= $value->name ?></td>
                                             <td><?= $value->created_at ?></td>
                                             <td>
                                                 <a href="

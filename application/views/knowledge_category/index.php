@@ -22,7 +22,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Category Code</th>
-                                        <th>Cateegory Title</th>
+                                        <th>Category Title</th>
                                         <th>Status</th>
                                         <th style="width:50%;">Actions</th>
                                     </tr>

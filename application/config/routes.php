@@ -66,6 +66,8 @@ $route['user/create'] = 'UserController/create';
 $route['user/store'] = 'UserController/store';
 $route['user/edit/(:any)'] = 'UserController/edit/$1';
 $route['user/show/(:any)'] = 'UserController/show/$1';
+$route['user/chat/(:any)'] = 'UserController/chat/$1';
+$route['user/store_chat'] = 'UserController/store_chat';
 $route['user/update/(:any)'] = 'UserController/update/$1';
 $route['user/destroy/(:any)'] = 'UserController/destroy/$1';
 
@@ -73,6 +75,7 @@ $route['user/destroy/(:any)'] = 'UserController/destroy/$1';
 $route['tacit_knowledge'] = 'TacitKnowledgeController';
 $route['tacit_knowledge/create'] = 'TacitKnowledgeController/create';
 $route['tacit_knowledge/store'] = 'TacitKnowledgeController/store';
+$route['tacit_knowledge/store_comment/(:any)'] = 'TacitKnowledgeController/store_comment/$1';
 $route['tacit_knowledge/edit/(:any)'] = 'TacitKnowledgeController/edit/$1';
 $route['tacit_knowledge/show/(:any)'] = 'TacitKnowledgeController/show/$1';
 $route['tacit_knowledge/show/(:any)/(:any)'] = 'TacitKnowledgeController/show_from_notif/$1/$1';
@@ -101,6 +104,8 @@ $route['knowledge_validate/update/(:any)'] = 'KnowledgeValidateController/update
 $route['knowledge_validate/destroy/(:any)'] = 'KnowledgeValidateController/destroy/$1';
 $route['knowledge_validate/accept_by_admin/(:any)'] = 'KnowledgeValidateController/accept_by_admin/$1';
 $route['knowledge_validate/reject_by_admin/(:any)'] = 'KnowledgeValidateController/reject_by_admin/$1';
+$route['knowledge_validate/accept_by_kasi/(:any)'] = 'KnowledgeValidateController/accept_by_kasi/$1';
+$route['knowledge_validate/reject_by_kasi/(:any)'] = 'KnowledgeValidateController/reject_by_kasi/$1';
 
 // routes for tacit knowledge Category
 $route['knowledge_category'] = 'KnowledgeCategoryController';
@@ -139,3 +144,9 @@ $route['profile/update/(:any)'] = 'ProfileController/update/$1';
 $route['profile/destroy/(:any)'] = 'ProfileController/destroy/$1';
 $route['profile/change_password'] = 'ProfileController/change_password';
 $route['profile/update_password'] = 'ProfileController/update_password';
+
+// routes for search
+$route['search'] = 'SearchController';
+
+// routes for help
+$route['help'] = 'HelpController';

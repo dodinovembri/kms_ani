@@ -71,10 +71,10 @@
                                     <label class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" class="form-control" required>
-                                            <?php if ($user->status == 0) { ?>
+                                            <?php if ($knowledge_category->status == 0) { ?>
                                                 <option value="0">Inactive</option>
                                                 <option value="1">Active</option>
-                                            <?php }elseif ($user->status == 1) { ?>
+                                            <?php }elseif ($knowledge_category->status == 1) { ?>
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             <?php } ?>

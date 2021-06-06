@@ -48,7 +48,7 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Visible to visitor</label>
                                     <div class="col-sm-10">
-                                        <select name="is_visible_by_visitor" class="form-control" required>
+                                        <select name="is_visible_to_visitor" class="form-control" required>
                                             <option value="1">Yes</option>
                                             <option value="0">No</option>
                                         </select>

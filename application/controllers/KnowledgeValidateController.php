@@ -15,7 +15,12 @@ class KnowledgeValidateController extends CI_Controller {
 
 	public function index()
 	{
-        $data['knowledges'] = $this->HelperModel->getWithUnion()->result();
+        if ($this->session->userdata('role_id') == 0) {
+            $data['knowledges'] = $this->HelperModel->getWithUnion()->result();
+        }
+        if ($this->session->userdata('role_id') == 1) {
+            $data['knowledges'] = $this->HelperModel->getWithUnionKasi()->result();
+        }
 
         $this->load->view('templates/header');
 		$this->load->view('knowledge_validate/index', $data);
@@ -65,7 +70,7 @@ class KnowledgeValidateController extends CI_Controller {
     public function reject_by_admin($id)
     {
         $data = array(
-            'status' => 2,
+            'status' => 3,
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
@@ -74,4 +79,30 @@ class KnowledgeValidateController extends CI_Controller {
         $this->session->set_flashdata('warning', "This Knowledge has been rejected!");
         return redirect(base_url('knowledge_validate'));
     }    
+
+    public function accept_by_kasi($id)
+    {
+        $data = array(
+            'status' => 4,
+            'updater_id' => $this->session->userdata('id'),
+            'updated_at' => date("Y-m-d H-i-s")
+        );
+
+        $this->TacitKnowledgeModel->update($data, $id);
+        $this->session->set_flashdata('success', "Success accept Tacit Knowledge!");
+        return redirect(base_url('knowledge_validate'));
+    }
+
+    public function reject_by_kasi($id)
+    {
+        $data = array(
+            'status' => 5,
+            'updater_id' => $this->session->userdata('id'),
+            'updated_at' => date("Y-m-d H-i-s")
+        );
+
+        $this->TacitKnowledgeModel->update($data, $id);
+        $this->session->set_flashdata('warning', "This Knowledge has been rejected!");
+        return redirect(base_url('knowledge_validate'));
+    }        
 }

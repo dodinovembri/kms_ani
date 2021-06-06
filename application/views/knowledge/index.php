@@ -34,14 +34,24 @@
                                         $no++; ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $value->knowledge_category_id ?></td>
+                                            <td><?= $value->category_code ?></td>
                                             <td><?= $value->title ?></td>
-                                            <td><?= check_status($value->status) ?></td>
-                                            <td><?= $value->creator_id ?></td>
+                                            <td><?= check_status_tacit($value->status) ?></td>
+                                            <td><?= $value->name ?></td>
                                             <td><?= $value->created_at ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('knowledge_validate/show/'); echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="eye"></i></button></a>
-                                                <a href="#"><button class="btn btn-datatable btn-icon btn-transparent-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $value->id; ?>"><i data-feather="trash-2"></i></button></a>
+                                                <a href="
+                                                    <?php if ($value->is_tacit == 1) {
+                                                        echo base_url('tacit_knowledge/show/');
+                                                        echo $value->id;
+                                                    } else {
+                                                        echo base_url('explicit_knowledge/show/');
+                                                        echo $value->id;
+                                                    } ?>
+                                                "><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="eye"></i></button></a>
+                                                <?php if ($value->status != 4) { ?>
+                                                    <a href="#"><button class="btn btn-datatable btn-icon btn-transparent-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $value->id; ?>"><i data-feather="trash-2"></i></button></a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="exampleModal<?php echo $value->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

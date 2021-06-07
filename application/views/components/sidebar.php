@@ -36,6 +36,12 @@
                                     All Knowledges
                                 </a>
                                 <div class="sidenav-menu-heading">Setup Management</div>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "user") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('user') ?>">
+                                    <div class="nav-link-icon"><i data-feather="users"></i></div>
+                                    User
+                                </a>
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "knowledge_category") {
                                     echo "active";
                                 } ?>" href="<?php echo base_url('knowledge_category') ?>">
@@ -47,6 +53,12 @@
                                 } ?>" href="<?php echo base_url('about') ?>">
                                     <div class="nav-link-icon"><i data-feather="alert-circle"></i></div>
                                     About
+                                </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "help") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('help') ?>">
+                                    <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
+                                    Helps
                                 </a>
                             </div>
                         <?php }elseif ($this->session->userdata('role_id') == 1) { ?>

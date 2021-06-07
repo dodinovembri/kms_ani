@@ -96,21 +96,31 @@
                                     <div class="col-sm-10">
                                         <select name="role_id" class="form-control" required>
                                             <?php if ($user->role_id == 0) { ?>
-                                                <option value="0">Administrator</option>
-                                                <option value="1">Kasi</option>
+                                                <?php if ($this->session->userdata('role_id') != 0) { ?>
+                                                    <option value="0">Administrator</option>
+                                                    <option value="1">Kasi</option>
+                                                <?php } ?>
                                                 <option value="2">Staff Ahli</option>
                                                 <option value="3">Visitor</option>
                                             <?php } elseif ($user->role_id == 1) { ?>
-                                                <option value="1">Kasi</option>
-                                                <option value="0">Administrator</option>
+                                                <?php if ($this->session->userdata('role_id') != 0) { ?>
+                                                    <option value="1">Kasi</option>
+                                                    <option value="0">Administrator</option>
+                                                <?php } ?>
                                                 <option value="2">Staff Ahli</option>
                                                 <option value="3">Visitor</option>
                                             <?php } elseif ($user->role_id == 2) { ?>
+                                                <?php if ($this->session->userdata('role_id') != 0) { ?>
+                                                    <option value="0">Administrator</option>
+                                                    <option value="1">Kasi</option>
+                                                <?php } ?>
                                                 <option value="2">Staff Ahli</option>
-                                                <option value="0">Administrator</option>
-                                                <option value="1">Kasi</option>
                                                 <option value="3">Visitor</option>
                                             <?php }elseif ($user->role_id == 3) { ?>
+                                                <?php if ($this->session->userdata('role_id') != 0) { ?>
+                                                    <option value="0">Administrator</option>
+                                                    <option value="1">Kasi</option>
+                                                <?php } ?>
                                                 <option value="0">Administrator</option>
                                                 <option value="1">Kasi</option>
                                                 <option value="2">Staff Ahli</option>

@@ -34,7 +34,13 @@
                                 <tbody>
                                     <?php $no = 0;
                                     foreach ($users as $key => $value) {
-                                        $no++; ?>
+                                        $no++;  
+                                        if ($this->session->userdata('role_id') == 0) {
+                                            if ($value->role_id == 0 || $value->role_id == 1) {
+                                                continue;
+                                            }
+                                        }
+                                        ?>
                                         <tr>
                                             <td><?= $no ?></td>
                                             <td><?= $value->nip ?></td>

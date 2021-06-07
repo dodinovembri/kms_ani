@@ -90,9 +90,11 @@
                                     <label class="col-sm-2 col-form-label">Role</label>
                                     <div class="col-sm-10">
                                         <select name="role_id" class="form-control" required>
+                                            <?php if ($this->session->userdata('role_id') != 0) { ?>
+                                                <option value="0">Administrator</option>
+                                                <option value="1">Kasi</option>
+                                            <?php } ?>
                                             <option value="">Select</option>
-                                            <option value="0">Administrator</option>
-                                            <option value="1">Kasi</option>
                                             <option value="2">Staff Ahli</option>
                                             <option value="3">Visitor</option>
                                         </select>

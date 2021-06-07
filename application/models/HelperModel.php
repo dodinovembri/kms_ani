@@ -29,6 +29,11 @@ class HelperModel extends CI_Model
 
     public function getWithUnionById($id)
     {        
-        return $this->db->query("SELECT tacit_knowledge.id as id, tacit_knowledge.is_tacit as is_tacit from tacit_knowledge WHERE tacit_knowledge.status = 1 and tacit_knowledge.id = $id UNION SELECT explicit_knowledge.id as id, explicit_knowledge.is_tacit as is_tacit from explicit_knowledge WHERE explicit_knowledge.status = 1 and explicit_knowledge.id = $id");
+        return $this->db->query("SELECT tacit_knowledge.id as id, tacit_knowledge.is_tacit as is_tacit from tacit_knowledge WHERE tacit_knowledge.status = 2 and tacit_knowledge.id = $id UNION SELECT explicit_knowledge.id as id, explicit_knowledge.is_tacit as is_tacit from explicit_knowledge WHERE explicit_knowledge.status = 2 and explicit_knowledge.id = $id");
     }
+
+    public function getWithUnionByIdKasi($id)
+    {        
+        return $this->db->query("SELECT tacit_knowledge.id as id, tacit_knowledge.is_tacit as is_tacit from tacit_knowledge WHERE tacit_knowledge.status = 1 and tacit_knowledge.id = $id UNION SELECT explicit_knowledge.id as id, explicit_knowledge.is_tacit as is_tacit from explicit_knowledge WHERE explicit_knowledge.status = 1 and explicit_knowledge.id = $id");
+    }    
 }

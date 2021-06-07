@@ -61,7 +61,9 @@ class KnowledgeValidateController extends CI_Controller {
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
+        
         $knowledge = $this->HelperModel->getWithUnionById($id)->row();
+
         if ($knowledge->is_tacit == 1) {            
             $this->TacitKnowledgeModel->update($data, $id);
         }else{
@@ -96,7 +98,7 @@ class KnowledgeValidateController extends CI_Controller {
             'updater_id' => $this->session->userdata('id'),
             'updated_at' => date("Y-m-d H-i-s")
         );
-        $knowledge = $this->HelperModel->getWithUnionById($id)->row();
+        $knowledge = $this->HelperModel->getWithUnionByIdKasi($id)->row();
 
         if ($knowledge->is_tacit == 1) {            
             $this->TacitKnowledgeModel->update($data, $id);

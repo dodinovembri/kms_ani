@@ -64,4 +64,14 @@ class TacitKnowledgeModel extends CI_Model
         $this->db->where('status !=', $status);
         return $this->db->get($this->_table);
     }
+    
+    public function getReport()
+    {
+        return $this->db->query("SELECT COUNT(*) AS total, EXTRACT(YEAR_MONTH FROM created_at) as tanggal from tacit_knowledge group by tanggal");
+    }
+
+    public function getReportByCategory()
+    {
+        return $this->db->query("SELECT COUNT(*) AS total, knowledge_category.category_code as category_code from tacit_knowledge JOIN knowledge_category ON tacit_knowledge.knowledge_category_id = knowledge_category.id group by tacit_knowledge.knowledge_category_id");
+    }
 }

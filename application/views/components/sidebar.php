@@ -35,6 +35,12 @@
                                     <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
                                     All Knowledges
                                 </a>
+                                <a class="nav-link <?php if ($this->uri->segment(1) == "report") {
+                                    echo "active";
+                                } ?>" href="<?php echo base_url('report') ?>">
+                                    <div class="nav-link-icon"><i data-feather="align-justify"></i></div>
+                                    Reports
+                                </a>
                                 <div class="sidenav-menu-heading">Setup Management</div>
                                 <a class="nav-link <?php if ($this->uri->segment(1) == "user") {
                                     echo "active";

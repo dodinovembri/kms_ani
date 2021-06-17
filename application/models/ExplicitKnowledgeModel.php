@@ -51,5 +51,15 @@ class ExplicitKnowledgeModel extends CI_Model
     {
         $this->db->where('status', $status);
         return $this->db->get($this->_table);
-    }      
+    }   
+    
+    public function getReport()
+    {
+        return $this->db->query("SELECT COUNT(*) AS total, EXTRACT(YEAR_MONTH FROM created_at) as tanggal from explicit_knowledge group by tanggal");
+    }
+
+    public function getReportByCategory()
+    {
+        return $this->db->query("SELECT COUNT(*) AS total, knowledge_category.category_code as category_code from explicit_knowledge JOIN knowledge_category ON explicit_knowledge.knowledge_category_id = knowledge_category.id group by explicit_knowledge.knowledge_category_id");
+    }
 }

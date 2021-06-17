@@ -16,13 +16,13 @@ class KnowledgeController extends CI_Controller {
 	public function index()
 	{
         if ($this->session->userdata('role_id') == 0) {
-            $data['knowledges'] = $this->HelperModel->getWithUnionAll()->result();
+            $data['knowledges'] = $this->HelperModel->getWithUnionMyAll()->result();
         }elseif ($this->session->userdata('role_id') == 1) {
-            $data['knowledges'] = $this->HelperModel->getWithUnionKasiAll()->result();
+            $data['knowledges'] = $this->HelperModel->getWithUnionKasiMyAll()->result();
         }elseif ($this->session->userdata('role_id') == 2) {
-            $data['knowledges'] = $this->HelperModel->getWithUnionAll()->result();
+            $data['knowledges'] = $this->HelperModel->getWithUnionMyAll()->result();
         }elseif ($this->session->userdata('role_id') == 3) {
-            $data['knowledges'] = $this->HelperModel->getWithUnionVisitor()->result();
+            $data['knowledges'] = $this->HelperModel->getWithUnionMyVisitor()->result();
         }
 
         $this->load->view('templates/header');

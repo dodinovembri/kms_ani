@@ -84,6 +84,7 @@ $route['tacit_knowledge/destroy/(:any)'] = 'TacitKnowledgeController/destroy/$1'
 $route['explicit_knowledge'] = 'ExplicitKnowledgeController';
 $route['explicit_knowledge/create'] = 'ExplicitKnowledgeController/create';
 $route['explicit_knowledge/store'] = 'ExplicitKnowledgeController/store';
+$route['explicit_knowledge/store_comment/(:any)'] = 'ExplicitKnowledgeController/store_comment/$1';
 $route['explicit_knowledge/edit/(:any)'] = 'ExplicitKnowledgeController/edit/$1';
 $route['explicit_knowledge/show/(:any)'] = 'ExplicitKnowledgeController/show/$1';
 $route['explicit_knowledge/show/(:any)/(:any)'] = 'ExplicitKnowledgeController/show_from_notif/$1/$1';
@@ -173,3 +174,6 @@ $route['help_comment/edit/(:any)'] = 'HelpCommentController/edit/$1';
 $route['help_comment/show/(:any)'] = 'HelpCommentController/show/$1';
 $route['help_comment/update/(:any)'] = 'HelpCommentController/update/$1';
 $route['help_comment/destroy/(:any)'] = 'HelpCommentController/destroy/$1';
+
+// routes for report
+$route['report'] = 'ReportController';

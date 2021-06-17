@@ -6,7 +6,7 @@ class ExplicitKnowledgeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['ExplicitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel', 'ActivityModel']);
+        $this->load->model(['ExplicitKnowledgeModel', 'KnowledgeCategoryModel', 'UserModel', 'NotificationModel', 'ActivityModel', 'ExplicitCommentModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -113,6 +113,7 @@ class ExplicitKnowledgeController extends CI_Controller {
     public function show($id)
     {
         $data['explicit_knowledge'] = $this->ExplicitKnowledgeModel->getById($id)->row();
+        $data['explicit_comments'] = $this->ExplicitCommentModel->getByWhere($id)->result();
 
         $this->load->view('templates/header');
         $this->load->view('explicit_knowledge/show', $data);
@@ -191,4 +192,20 @@ class ExplicitKnowledgeController extends CI_Controller {
         $this->session->set_flashdata('success', "Success deleted data!");
         return redirect(base_url('explicit_knowledge'));
     }
+
+    public function store_comment($id)
+    {
+        $comment = $this->input->post('comment');
+        $user_id = $this->session->userdata('id');
+
+        $data = array(
+            'explicit_knowledge_id' => $id,
+            'content' => $comment,
+            'creator_id' => $user_id,
+            'created_at' => date("Y-m-d H-i-s")
+        );
+
+        $this->ExplicitCommentModel->insert($data);        
+        return redirect(base_url("explicit_knowledge/show/$id"));
+    }    
 }

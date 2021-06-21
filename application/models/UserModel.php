@@ -49,4 +49,11 @@ class UserModel extends CI_Model
         $this->db->where('id !=', $user_id);        
         return $this->db->get($this->_table);
     }
+
+    public function getWithoutMeAndExlude($user_id)
+    {
+        $this->db->where('id !=', $user_id);        
+        $this->db->where('role_id !=', 3);        
+        return $this->db->get($this->_table);
+    }    
 }

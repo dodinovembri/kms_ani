@@ -6,8 +6,15 @@ class ActivityModel extends CI_Model
 
     public function get()
     {
+        $this->db->order_by("id", "asc");
+        $this->db->limit(10);
     	return $this->db->get($this->_table);
     }
+
+    public function getAll()
+    {
+    	return $this->db->get($this->_table);
+    }    
 
     public function insert($data)
     {

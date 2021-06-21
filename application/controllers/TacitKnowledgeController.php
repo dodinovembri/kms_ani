@@ -62,7 +62,11 @@ class TacitKnowledgeController extends CI_Controller {
         $last_id = $this->db->insert_id();
 
         $user_id = $this->session->userdata('id');
-        $users = $this->UserModel->getWithoutMe($user_id)->result();
+        if ($is_visible_to_visitor == 1) {
+            $users = $this->UserModel->getWithoutMe($user_id)->result();
+        }else{
+            $users = $this->UserModel->getWithoutMeAndExlude($user_id)->result();
+        }
 
         foreach ($users as $key => $value) {
             $notif = array(

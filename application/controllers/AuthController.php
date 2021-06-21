@@ -6,7 +6,7 @@ class AuthController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['UserModel']);
+        $this->load->model(['UserModel', 'ActivityModel']);
         if ($this->session->userdata('logged_in') == 1) {
             return redirect(base_url('home'));
         }
@@ -38,6 +38,16 @@ class AuthController extends CI_Controller {
             );
             
             $this->session->set_userdata($auth);
+
+            $created_at = date("Y-m-d H-i-s");
+            $title = "Logged in !";
+            $activity = array(
+                'user_id' => $this->session->userdata('id'),
+                'message' => $this->session->userdata('name')." ".$title,
+                'created_at' => $created_at
+            );
+            $this->ActivityModel->insert($activity);
+
             return redirect(base_url('home'));
         }else{
             $this->session->set_flashdata('warning', "Email or Password is wrong!");

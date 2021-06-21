@@ -26,7 +26,7 @@ class ExplicitKnowledgeModel extends CI_Model
 
     public function getById($id)
     {
-        return $this->db->query("SELECT explicit_knowledge.*, knowledge_category.category_code as category_code, users.name as name FROM explicit_knowledge JOIN knowledge_category ON explicit_knowledge.knowledge_category_id = knowledge_category.id JOIN users ON explicit_knowledge.creator_id = users.id where explicit_knowledge.id = $id");
+        return $this->db->query("SELECT explicit_knowledge.*, knowledge_category.category_code as category_code, knowledge_category.category_title as category_title, users.name as name FROM explicit_knowledge JOIN knowledge_category ON explicit_knowledge.knowledge_category_id = knowledge_category.id JOIN users ON explicit_knowledge.creator_id = users.id where explicit_knowledge.id = $id");
     }      
 
     public function update($data, $id)

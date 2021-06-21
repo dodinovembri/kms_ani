@@ -26,7 +26,7 @@
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
                                         <select name="knowledge_category_id" class="form-control" required>
-                                            <option value="<?php echo $explicit_knowledge->knowledge_category_id; ?>"><?php echo $explicit_knowledge->knowledge_category_id; ?></option>
+                                            <option value="<?php echo $explicit_knowledge->knowledge_category_id; ?>"><?php echo $explicit_knowledge->category_title; ?></option>
                                             <?php  foreach ($knowledge_categories as $key => $value) { ?>
                                                 <option value="<?php echo $value->id; ?>"><?php echo $value->category_title; ?></option>
                                             <?php } ?>
@@ -48,7 +48,7 @@
                                 <div class="mb-3 form-group row">
                                     <label class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea name="description" id="editor" rows="7" class="form-control" required><?php echo $explicit_knowledge->description ?></textarea>
+                                        <textarea name="description" id="editor" rows="7" class="form-control" required><?php echo $explicit_knowledge->content ?></textarea>
                                     </div>
                                 </div>
                                 <br>

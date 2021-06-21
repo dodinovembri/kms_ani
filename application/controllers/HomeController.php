@@ -35,4 +35,14 @@ class HomeController extends CI_Controller {
 
         return redirect(base_url('login'));
     }
+
+    public function more()
+    {
+        $data['knowledge_categories'] = $this->KnowledgeCategoryModel->get()->result();
+        $data['activities'] = $this->ActivityModel->getAll()->result();
+
+        $this->load->view('templates/header');
+        $this->load->view('home/more', $data);
+        $this->load->view('templates/footer');
+    }
 }

@@ -6,7 +6,7 @@ class KnowledgeValidateController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['TacitKnowledgeModel', 'ExplicitKnowledgeModel', 'HelperModel']);
+        $this->load->model(['TacitKnowledgeModel', 'ExplicitKnowledgeModel', 'HelperModel', 'UserModel', 'NotificationModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -69,7 +69,7 @@ class KnowledgeValidateController extends CI_Controller {
         }else{
             $this->ExplicitKnowledgeModel->update($data, $id);
         }
-        $this->session->set_flashdata('success', "Success accept Tacit Knowledge!");
+        $this->session->set_flashdata('success', "Success accept Knowledge!");
         return redirect(base_url('knowledge_validate'));
     }
 
@@ -100,13 +100,34 @@ class KnowledgeValidateController extends CI_Controller {
         );
         $knowledge = $this->HelperModel->getWithUnionByIdKasi($id)->row();
 
-        if ($knowledge->is_tacit == 1) {            
+        $user_id = $this->session->userdata('id');
+        if ($knowledge->is_visible_to_visitor == 1) {
+            $users = $this->UserModel->getWithoutMe($user_id)->result();
+        }else{
+            $users = $this->UserModel->getWithoutMeAndExlude($user_id)->result();
+        }
+        
+        $created_at = date("Y-m-d H-i-s");
+        foreach ($users as $key => $value) {
+            $notif = array(
+                'user_id' => $value->id,
+                'knowledge_id' => $knowledge->id,
+                'title' => $knowledge->title,
+                'content' => $knowledge->content,
+                'is_tacit' => $knowledge->is_tacit,
+                'is_read' => 0,
+                'created_at' => $created_at
+            );
+            $this->NotificationModel->insert($notif);
+        }
+
+        if ($knowledge->is_tacit == 1) {                
             $this->TacitKnowledgeModel->update($data, $id);
         }else{
             $this->ExplicitKnowledgeModel->update($data, $id);
         }
 
-        $this->session->set_flashdata('success', "Success accept Tacit Knowledge!");
+        $this->session->set_flashdata('success', "Success accept Knowledge!");
         return redirect(base_url('knowledge_validate'));
     }
 

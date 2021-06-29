@@ -61,26 +61,6 @@ class TacitKnowledgeController extends CI_Controller {
         $this->TacitKnowledgeModel->insert($data);
         $last_id = $this->db->insert_id();
 
-        $user_id = $this->session->userdata('id');
-        if ($is_visible_to_visitor == 1) {
-            $users = $this->UserModel->getWithoutMe($user_id)->result();
-        }else{
-            $users = $this->UserModel->getWithoutMeAndExlude($user_id)->result();
-        }
-
-        foreach ($users as $key => $value) {
-            $notif = array(
-                'user_id' => $value->id,
-                'knowledge_id' => $last_id,
-                'title' => $title,
-                'content' => $content,
-                'is_tacit' => 1,
-                'is_read' => 0,
-                'created_at' => $created_at
-            );
-            $this->NotificationModel->insert($notif);
-        }
-
         $activity = array(
             'message' => $this->session->userdata('name')." Create ".$title,
             'created_at' => $created_at
@@ -142,7 +122,7 @@ class TacitKnowledgeController extends CI_Controller {
             'title' => $title,
             'content' => $content,
             'is_visible_to_visitor' => $is_visible_to_visitor,
-            'status' => 1,
+            'status' => 2,
             'updater_id' => $updater_id,
             'updated_at' => $updated_at
         );

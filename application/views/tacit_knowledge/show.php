@@ -44,7 +44,7 @@
                                     <form action="<?php echo base_url('tacit_knowledge/store_comment/');
                                                     echo $tacit_knowledge->id; ?>" method="POST">
                                         <div class="send-wrap ">
-                                            <textarea class="form-control send-message" name="comment" rows="3" placeholder="Write a reply..."></textarea>
+                                            <textarea class="form-control send-message" name="comment" rows="3" placeholder="Write a reply..." required></textarea>
                                         </div> <br>
                                         <button type="submit" class="btn btn-primary">Send Message</button>
                                     </form>

@@ -14,11 +14,16 @@ class TacitKnowledgeModel extends CI_Model
         return $this->db->insert($this->_table, $data);
     }
 
+    // public function getById($id)
+    // {
+    //     $this->db->where('id', $id);
+    //     return $this->db->get($this->_table);
+    // }
+
     public function getById($id)
     {
-        $this->db->where('id', $id);
-        return $this->db->get($this->_table);
-    }
+        return $this->db->query("SELECT tacit_knowledge.*, knowledge_category.category_code as category_code, knowledge_category.category_title as category_title, users.name as name FROM tacit_knowledge JOIN knowledge_category ON tacit_knowledge.knowledge_category_id = knowledge_category.id JOIN users ON tacit_knowledge.creator_id = users.id where tacit_knowledge.id = $id");
+    }      
     
     public function getByIdAll($id)
     {

@@ -84,22 +84,6 @@ class ExplicitKnowledgeController extends CI_Controller {
         $this->ExplicitKnowledgeModel->insert($data);
         $last_id = $this->db->insert_id();
 
-        $user_id = $this->session->userdata('id');
-        $users = $this->UserModel->getWithoutMe($user_id)->result();
-
-        foreach ($users as $key => $value) {
-            $notif = array(
-                'user_id' => $value->id,
-                'knowledge_id' => $last_id,
-                'title' => $title,
-                'content' => $description,
-                'is_tacit' => 0,
-                'is_read' => 0,
-                'created_at' => $created_at
-            );
-            $this->NotificationModel->insert($notif);
-        }
-
         $activity = array(
             'message' => $this->session->userdata('name')." Create ".$title,
             'created_at' => $created_at
@@ -126,8 +110,10 @@ class ExplicitKnowledgeController extends CI_Controller {
             'is_read' => 1
         );
         $this->NotificationModel->update($data, $id);
-        
-        $data['explicit_knowledge'] = $this->ExplicitKnowledgeModel->getById($id)->row();;
+        $notif = $this->NotificationModel->getById($id)->row();
+
+        $data['explicit_knowledge'] = $this->ExplicitKnowledgeModel->getById($notif->knowledge_id)->row();
+        $data['explicit_comments'] = $this->ExplicitCommentModel->getByWhere($notif->knowledge_id)->result();
 
         $this->load->view('templates/header');
         $this->load->view('explicit_knowledge/show', $data);
@@ -165,7 +151,8 @@ class ExplicitKnowledgeController extends CI_Controller {
             $data = array(
                 'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
-                'description' => $description,
+                'content' => $description,
+                'status' => 2,
                 'file' => $this->upload->data('file_name'),
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
@@ -176,7 +163,8 @@ class ExplicitKnowledgeController extends CI_Controller {
             $data = array(
                 'knowledge_category_id' => $knowledge_category_id,
                 'title' => $title,
-                'description' => $description,
+                'status' => 2,
+                'content' => $description,
                 'creator_id' => $creator_id,
                 'created_at' => $created_at
             );

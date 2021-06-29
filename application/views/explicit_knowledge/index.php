@@ -41,7 +41,7 @@
                                             <td><?= $value->category_code ?></td>
                                             <td><?= $value->title ?></td>
                                             <td><a target="_blank" href="<?php echo base_url('uploads/explicit_knowledge/'); echo $value->file; ?>"><?= $value->file ?></a></td>
-                                            <td><?= check_status($value->status) ?></td>
+                                            <td><?= check_status_tacit($value->status) ?></td>
                                             <td><?= $value->name ?></td>
                                             <td><?= $value->created_at ?></td>
                                             <td>

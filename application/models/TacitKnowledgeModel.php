@@ -37,9 +37,14 @@ class TacitKnowledgeModel extends CI_Model
     	return $this->db->get($this->_table);
     }
 
+    // public function getWithJoin()
+    // {
+    //     return $this->db->query("SELECT tacit_knowledge.*, knowledge_category.category_code as category_code, users.name as name FROM tacit_knowledge JOIN knowledge_category ON tacit_knowledge.knowledge_category_id = knowledge_category.id JOIN users ON tacit_knowledge.creator_id = users.id");
+    // }
+
     public function getWithJoin()
     {
-        return $this->db->query("SELECT tacit_knowledge.*, knowledge_category.category_code as category_code, users.name as name FROM tacit_knowledge JOIN knowledge_category ON tacit_knowledge.knowledge_category_id = knowledge_category.id JOIN users ON tacit_knowledge.creator_id = users.id");
+        return $this->db->query("SELECT tacit_knowledge.*, knowledge_category.category_code as category_code, users.name as name FROM tacit_knowledge JOIN knowledge_category ON tacit_knowledge.knowledge_category_id = knowledge_category.id JOIN users ON tacit_knowledge.creator_id = users.id where tacit_knowledge.status != 3 and tacit_knowledge.status != 5");
     }
 
     public function getWhere()

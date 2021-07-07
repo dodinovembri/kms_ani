@@ -46,7 +46,7 @@
                                             <a href="<?php echo base_url('tacit_knowledge/show/');
                                                         echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="eye"></i></button></a>
                                             <?php if ($this->session->userdata('role_id') != 3) { ?>
-                                                <?php if ($value->status != 4) { ?>
+                                                <?php if ($this->session->userdata('id') == $value->creator_id) { ?>
                                                     <a href="<?php echo base_url('tacit_knowledge/edit/');echo $value->id; ?>"><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="edit"></i></button></a>
                                                     <a href="#"><button class="btn btn-datatable btn-icon btn-transparent-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $value->id; ?>"><i data-feather="trash-2"></i></button></a>
                                                 <?php } ?>

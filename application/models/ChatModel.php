@@ -11,7 +11,7 @@ class ChatModel extends CI_Model
 
     public function getWithJoin($sender_id, $receiver_id)
     {
-        return $this->db->query("select chat.*, users.name as name, users.image as image from chat join users on chat.send_to_id = users.id where (chat.send_by_id = $sender_id and chat.send_to_id = $receiver_id) or (chat.send_by_id = $receiver_id and chat.send_to_id = $sender_id)");
+        return $this->db->query("select chat.*, users.name as name, users.image as image from chat join users on chat.send_by_id = users.id where (chat.send_by_id = $sender_id and chat.send_to_id = $receiver_id) or (chat.send_by_id = $receiver_id and chat.send_to_id = $sender_id)");
 
         // $this->db->select('chat.id as chat_id, users.name as name, users.image as image, chat.message as message, chat.created_at as created_at, chat.send_to_id as send_to_id');
         // $this->db->join('users', 'chat.send_to_id = users.id');

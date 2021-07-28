@@ -30,13 +30,24 @@
                                         <form method="POST" action="<?php echo base_url('auth/login') ?>">
                                             <!-- Form Group (email address)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter email address" required />
+                                                <div class="col-md-10" style="display: inline-block;">
+                                                    <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                    <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter email address" required />
+                                                </div>
+                                                <div class="col-md-1" style="display: inline-block;">
+                                                    <i style="margin-left: 20px;" data-feather="mail"></i>
+                                                </div>
                                             </div>
                                             <!-- Form Group (password)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Enter password" required />
+                                                <div class="col-md-10" style="display: inline-block;">
+                                                    <label class="small mb-1" for="inputPassword">Password</label>
+                                                    <input class="form-control" type="password" name="password" placeholder="Enter password" id="pass" required />
+                                                </div>
+                                                <div class="col-md-1" style="display: inline-block;">
+                                                    <span id="mybutton" onclick="change()"><i style="margin-left: 20px;" data-feather="eye"></i></span>
+
+                                                </div>
                                             </div>
                                             <!-- Form Group (remember password checkbox)-->
                                             <div class="mb-3">
@@ -51,7 +62,18 @@
                                                 <button type="submit" class="btn btn-primary">Login</button>
                                             </div>
                                         </form>
-                                    </div>                                    
+                                        <script>
+                                            function change() {
+                                                var x = document.getElementById('pass').type;
+
+                                                if (x == 'password') {
+                                                    document.getElementById('pass').type = 'text';
+                                                } else {
+                                                    document.getElementById('pass').type = 'password';
+                                                }
+                                            }
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
